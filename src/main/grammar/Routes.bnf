@@ -1,0 +1,20 @@
+{
+  parserClass="com.github.tomasmilata.intelliroutes.parser.RoutesParser"
+
+  extends="com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+  psiClassPrefix="Routes"
+  psiImplClassSuffix="Impl"
+  psiPackage="com.github.tomasmilata.intelliroutes.psi"
+  psiImplPackage="com.github.tomasmilata.intelliroutes.psi.impl"
+
+  elementTypeHolderClass="com.github.tomasmilata.intelliroutes.psi.RoutesTypes"
+  elementTypeClass="com.github.tomasmilata.intelliroutes.psi.RoutesElementType"
+  tokenTypeClass="com.github.tomasmilata.intelliroutes.psi.RoutesTokenType"
+}
+
+routesFile ::= item_*
+
+private item_ ::= (route|COMMENT|EOL)
+
+route ::= VERB PATH CALL

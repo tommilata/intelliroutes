@@ -1,0 +1,9 @@
+/build/
+/src/generated/
+/.gradle/
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen

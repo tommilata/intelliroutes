@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>com.github.tomasmilata.intelliroutes</id>
+  <name>Play Routes</name>
+  <version>1.0</version>
+  <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
+
+  <description><![CDATA[
+      Support for <em>routes</em> files in Play framework.
+    ]]></description>
+
+  <change-notes><![CDATA[
+      <!--Add change notes here.<br>-->
+      <!--<em>most HTML tags may be used</em>-->
+    ]]>
+  </change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="171"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <fileTypeFactory implementation="com.github.tomasmilata.intelliroutes.RoutesFileTypeFactory"/>
+    <lang.parserDefinition language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.RoutesParserDefinition"/>
+    <lang.syntaxHighlighterFactory key="Routes" implementationClass="com.github.tomasmilata.intelliroutes.RoutesSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.github.tomasmilata.intelliroutes.RoutesColorSettingsPage"/>
+    <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.RoutesCompletionContributor"/>
+  </extensions>
+
+  <actions>
+    <!-- Add your actions here -->
+  </actions>
+
+</idea-plugin>

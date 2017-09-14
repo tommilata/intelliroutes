@@ -1,0 +1,64 @@
+import org.jetbrains.grammarkit.tasks.GenerateLexer
+import org.jetbrains.grammarkit.tasks.GenerateParser
+
+buildscript {
+    repositories {
+        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+        maven { url 'https://jitpack.io' }
+    }
+    dependencies {
+        classpath "com.github.hurricup:gradle-grammar-kit-plugin:2017.1.1"
+    }
+}
+
+plugins {
+    id 'java'
+    id "org.jetbrains.intellij" version "0.2.17"
+}
+
+repositories {
+    mavenCentral()
+}
+
+group 'com.github.tomas-milata'
+version '1.0'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+apply plugin: 'org.jetbrains.grammarkit'
+
+def genRoot = file('src/generated')
+
+sourceSets {
+    main {
+        java.srcDirs 'src', genRoot
+        resources.srcDir 'resources'
+    }
+}
+
+intellij {
+    version '2017.2.4'
+    publish {
+        pluginId '10053-play-routes'
+    }
+}
+
+task generateParser(type: GenerateParser) {
+    source = "src/main/grammar/Routes.bnf"
+    pathToParser = '/com/github/tomasmilata/intelliroutes/parser/RoutesParser.java'
+    pathToPsiRoot = '/com/github/tomasmilata/intelliroutes/psi'
+    targetRoot = genRoot
+    purgeOldFiles = true
+}
+
+task generateLexer(type: GenerateLexer) {
+    dependsOn generateParser
+    source = "src/main/jflex/Routes.flex"
+    targetDir = "${genRoot}/com/github/tomasmilata/intelliroutes"
+    targetClass = "RoutesLexer"
+    purgeOldFiles = true
+}
+
+compileJava {
+    dependsOn generateLexer
+}
