@@ -16,7 +16,7 @@ class RoutesFileType private constructor() : LanguageFileType(RoutesLanguage.INS
     }
 
     override fun getDefaultExtension(): String {
-        return "simple"
+        return "routes"
     }
 
     override fun getIcon(): Icon? {
