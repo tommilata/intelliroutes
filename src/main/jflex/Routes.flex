@@ -22,28 +22,45 @@ WHITE_SPACE=\s+
 COMMENT="#"[^\r\n]*
 VERB=[A-Z]+
 PATH=[^\ \r\n]+
-CALL=[^\s\r\n][^\r\n]*
+CONTROLLER_METHOD=[^\s\r\n()][^\r\n()]*
+ARGUMENT=[^\s\r\n,()][^\r\n,()]*
+
 
 %state WAITING_PATH
-%state WAITING_CALL
+%state WAITING_CONTROLLER_METHOD
+%state WAITING_ARGUMENTS
+%state WAITING_ARGUMENT
 
 %%
 
 <YYINITIAL> {
-  {EOL}              { return EOL; }
-  {WHITE_SPACE}      { return WHITE_SPACE; }
-  {COMMENT}          { return COMMENT; }
-  {VERB}             { yybegin(WAITING_PATH); return VERB; }
+  {EOL}               { return EOL; }
+  {WHITE_SPACE}       { return WHITE_SPACE; }
+  {COMMENT}           { return COMMENT; }
+  {VERB}              { yybegin(WAITING_PATH); return VERB; }
 }
 
 <WAITING_PATH> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
-  {PATH}             { yybegin(WAITING_CALL); return PATH; }
+  {WHITE_SPACE}       { return WHITE_SPACE; }
+  {PATH}              { yybegin(WAITING_CONTROLLER_METHOD); return PATH; }
 }
 
-<WAITING_CALL> {
+<WAITING_CONTROLLER_METHOD> {
+  {WHITE_SPACE}       { return WHITE_SPACE; }
+  {CONTROLLER_METHOD} { yybegin(WAITING_ARGUMENTS); return CONTROLLER_METHOD; }
+}
+
+<WAITING_ARGUMENTS> {
   {WHITE_SPACE}      { return WHITE_SPACE; }
-  {CALL}             { yybegin(YYINITIAL); return CALL; }
+  \(                 { yybegin(WAITING_ARGUMENT); return OPENING_PARENTHESIS; }
+  .                  { yybegin(YYINITIAL); }
+}
+
+<WAITING_ARGUMENT> {
+  {WHITE_SPACE}      { return WHITE_SPACE; }
+  {ARGUMENT}         { return ARGUMENT; }
+  ,                  { return COMMA; }
+  \)                 { yybegin(YYINITIAL); return CLOSING_PARENTHESIS; }
 }
 
 .                    { return BAD_CHARACTER; }
