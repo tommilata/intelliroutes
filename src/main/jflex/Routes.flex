@@ -34,33 +34,29 @@ ARGUMENT=[^\s\r\n,()][^\r\n,()]*
 %%
 
 <YYINITIAL> {
-  {EOL}               { return EOL; }
-  {WHITE_SPACE}       { return WHITE_SPACE; }
   {COMMENT}           { return COMMENT; }
   {VERB}              { yybegin(WAITING_PATH); return VERB; }
 }
 
 <WAITING_PATH> {
-  {WHITE_SPACE}       { return WHITE_SPACE; }
   {PATH}              { yybegin(WAITING_CONTROLLER_METHOD); return PATH; }
 }
 
 <WAITING_CONTROLLER_METHOD> {
-  {WHITE_SPACE}       { return WHITE_SPACE; }
   {CONTROLLER_METHOD} { yybegin(WAITING_ARGUMENTS); return CONTROLLER_METHOD; }
 }
 
 <WAITING_ARGUMENTS> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   \(                 { yybegin(WAITING_ARGUMENT); return OPENING_PARENTHESIS; }
   .                  { yybegin(YYINITIAL); }
 }
 
 <WAITING_ARGUMENT> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   {ARGUMENT}         { return ARGUMENT; }
   ,                  { return COMMA; }
   \)                 { yybegin(YYINITIAL); return CLOSING_PARENTHESIS; }
 }
 
+{EOL}               { return EOL; }
+{WHITE_SPACE}      { return WHITE_SPACE; }
 .                    { return BAD_CHARACTER; }
