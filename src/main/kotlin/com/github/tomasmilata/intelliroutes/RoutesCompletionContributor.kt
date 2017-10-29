@@ -15,11 +15,11 @@ class RoutesCompletionContributor : CompletionContributor() {
     init {
         extend(CompletionType.BASIC,
                 PlatformPatterns.psiElement(RoutesTypes.VERB).withLanguage(RoutesLanguage.INSTANCE),
-                httpVerbsCompletionProvider
+                httpVerbCompletionProvider
         )
         extend(CompletionType.BASIC,
-                PlatformPatterns.psiElement(RoutesTypes.CALL).withLanguage(RoutesLanguage.INSTANCE),
-                callsCompletionProvider
+                PlatformPatterns.psiElement(RoutesTypes.CONTROLLER_METHOD).withLanguage(RoutesLanguage.INSTANCE),
+                controllerMethodCompletionProvider
         )
     }
 
@@ -29,7 +29,7 @@ class RoutesCompletionContributor : CompletionContributor() {
                         .map { verb ->
                             LookupElementBuilder.create(verb)
                         }
-        private val httpVerbsCompletionProvider =
+        private val httpVerbCompletionProvider =
                 object : CompletionProvider<CompletionParameters>() {
                     override fun addCompletions(parameters: CompletionParameters,
                                                 context: ProcessingContext,
@@ -38,7 +38,7 @@ class RoutesCompletionContributor : CompletionContributor() {
                     }
                 }
 
-        private val callsCompletionProvider =
+        private val controllerMethodCompletionProvider =
                 object : CompletionProvider<CompletionParameters>() {
                     override fun addCompletions(parameters: CompletionParameters,
                                                 context: ProcessingContext,
@@ -47,21 +47,19 @@ class RoutesCompletionContributor : CompletionContributor() {
                         val searchScope = ProjectScope.getContentScope(project)
                         val query = AllClassesSearch.search(searchScope, project)
 
-                        val methods = query
-                                .flatMap { cls -> cls.methods.toList() }
-                                .filter { method ->
-                                    val returnType = PsiTypesUtil.getPsiClass(method.returnType)
-                                    isInheritor(returnType, "play.api.mvc.Action")
+                        query
+                            .flatMap { cls -> cls.methods.toList() }
+                            .forEach { method ->
+                                val returnType = PsiTypesUtil.getPsiClass(method.returnType)
+                                if (isInheritor(returnType, "play.api.mvc.Action")) {
+                                    val containingClass = method.containingClass
+                                    if (containingClass != null) {
+                                        val lookupElement = LookupElementBuilder.create("${containingClass.qualifiedName}.${method.name}")
+                                        resultSet.addElement(lookupElement)
+                                    }
                                 }
+                            }
 
-                        val methodLookupElements = methods.mapNotNull { method ->
-                            val containingClass = method.containingClass
-                            if (containingClass != null) {
-                                LookupElementBuilder.create("${containingClass.qualifiedName}.${method.name}")
-                            } else null
-                        }
-
-                        resultSet.addAllElements(methodLookupElements)
                     }
                 }
 
