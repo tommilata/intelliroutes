@@ -19,10 +19,14 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
         return if (tokenType == RoutesTypes.VERB) {
             VERB_KEYS
-        } else if (tokenType == RoutesTypes.PATH) {
-            PATH_KEYS
-        } else if (tokenType == RoutesTypes.CALL) {
-            CALL_KEYS
+        } else if (tokenType == RoutesTypes.SLASH) {
+            SLASH_KEYS
+        } else if (tokenType == RoutesTypes.STATIC_PATH_SEGMENT) {
+            STATIC_PATH_SEGMENT_KEYS
+        } else if (tokenType == RoutesTypes.PATH_PARAMETER) {
+            PATH_PARAMETER_KEYS
+        } else if (tokenType == RoutesTypes.ARGUMENT) {
+            ARGUMENT_KEYS
         } else if (tokenType == RoutesTypes.COMMENT) {
             COMMENT_KEYS
         } else if (tokenType == TokenType.BAD_CHARACTER) {
@@ -34,15 +38,19 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
         val VERB = createTextAttributesKey("PLAY_ROUTES_VERB", DefaultLanguageHighlighterColors.KEYWORD)
-        val PATH = createTextAttributesKey("PLAY_ROUTES_PATH", DefaultLanguageHighlighterColors.STRING)
-        val CALL = createTextAttributesKey("PLAY_ROUTES_CALL", DefaultLanguageHighlighterColors.FUNCTION_CALL)
+        val SLASH = createTextAttributesKey("PLAY_ROUTES_SLASH", DefaultLanguageHighlighterColors.SEMICOLON)
+        val STATIC_PATH_SEGMENT = createTextAttributesKey("PLAY_ROUTES_STATIC_PATH_SEGMENT", DefaultLanguageHighlighterColors.STRING)
+        val PATH_PARAMETER = createTextAttributesKey("PLAY_ROUTES_PATH_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
+        val ARGUMENT = createTextAttributesKey("PLAY_ROUTES_ARGUMENT", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val COMMENT = createTextAttributesKey("PLAY_ROUTES_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
         val BAD_CHARACTER = createTextAttributesKey("PLAY_ROUTES_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 
         private val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
         private val VERB_KEYS = arrayOf(VERB)
-        private val PATH_KEYS = arrayOf(PATH)
-        private val CALL_KEYS = arrayOf(CALL)
+        private val SLASH_KEYS = arrayOf(SLASH)
+        private val STATIC_PATH_SEGMENT_KEYS = arrayOf(STATIC_PATH_SEGMENT)
+        private val PATH_PARAMETER_KEYS = arrayOf(PATH_PARAMETER)
+        private val ARGUMENT_KEYS = arrayOf(ARGUMENT)
         private val COMMENT_KEYS = arrayOf(COMMENT)
         private val EMPTY_KEYS = emptyArray<TextAttributesKey>()
     }
