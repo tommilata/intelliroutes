@@ -26,8 +26,9 @@ STATIC_PATH_SEGMENT=[^\s\r\n\/:*]+
 PATH_PARAMETER=:[^\s\r\n\/]+
 WILDCARD_PARAMETER=\*[^\s\r\n\/]+
 CONTROLLER_METHOD=[^\s\r\n()][^\r\n()]*
-ARGUMENT_NAME=[^\s\r\n,():][^\r\n,():]*
-ARGUMENT_TYPE=[^\s\r\n,():][^\r\n,():]*
+ARGUMENT_NAME=[^\s\r\n,():=][^\r\n,():=]*
+ARGUMENT_TYPE=[^\s\r\n,():=][^\r\n,():=]*
+ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 
 
 %state WAITING_PATH
@@ -36,6 +37,7 @@ ARGUMENT_TYPE=[^\s\r\n,():][^\r\n,():]*
 %state WAITING_ARGUMENTS
 %state WAITING_ARGUMENT_NAME
 %state WAITING_ARGUMENT_TYPE
+%state WAITING_ARGUMENT_VALUE
 
 %%
 
@@ -73,12 +75,18 @@ ARGUMENT_TYPE=[^\s\r\n,():][^\r\n,():]*
   {ARGUMENT_NAME}         { return ARGUMENT_NAME; }
   ,                  { return COMMA; }
   :                 { yybegin(WAITING_ARGUMENT_TYPE); return COLON; }
+  =                 { yybegin(WAITING_ARGUMENT_VALUE); return EQ; }
   \)                 { yybegin(YYINITIAL); return CLOSING_PARENTHESIS; }
 }
 
 <WAITING_ARGUMENT_TYPE> {
     {WHITE_SPACE}      { return WHITE_SPACE; }
     {ARGUMENT_TYPE}         { yybegin(WAITING_ARGUMENT_NAME); return ARGUMENT_TYPE; }
+}
+
+<WAITING_ARGUMENT_VALUE> {
+    {WHITE_SPACE}      { return WHITE_SPACE; }
+    {ARGUMENT_VALUE}         { yybegin(WAITING_ARGUMENT_NAME); return ARGUMENT_VALUE; }
 }
 
 {EOL}               { return EOL; }
