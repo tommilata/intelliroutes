@@ -48,8 +48,7 @@ class RoutesColorSettingsPage : ColorSettingsPage {
                 AttributesDescriptor("Path Parameter", RoutesSyntaxHighlighter.PATH_PARAMETER),
                 AttributesDescriptor("Wildcard Path Parameter", RoutesSyntaxHighlighter.WILDCARD_PARAMETER),
                 AttributesDescriptor("Static Path Segment", RoutesSyntaxHighlighter.STATIC_PATH_SEGMENT),
-                AttributesDescriptor("Path Separator", RoutesSyntaxHighlighter.SLASH),
-                AttributesDescriptor("Controller Call Parameter", RoutesSyntaxHighlighter.ARGUMENT),
+                AttributesDescriptor("Controller Call Argument Name", RoutesSyntaxHighlighter.ARGUMENT_NAME),
                 AttributesDescriptor("Comment", RoutesSyntaxHighlighter.COMMENT),
                 AttributesDescriptor("Bad Character", RoutesSyntaxHighlighter.BAD_CHARACTER)
         )
