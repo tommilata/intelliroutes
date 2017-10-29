@@ -17,22 +17,15 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
-        return if (tokenType == RoutesTypes.VERB) {
-            VERB_KEYS
-        } else if (tokenType == RoutesTypes.SLASH) {
-            SLASH_KEYS
-        } else if (tokenType == RoutesTypes.STATIC_PATH_SEGMENT) {
-            STATIC_PATH_SEGMENT_KEYS
-        } else if (tokenType == RoutesTypes.PATH_PARAMETER) {
-            PATH_PARAMETER_KEYS
-        } else if (tokenType == RoutesTypes.ARGUMENT) {
-            ARGUMENT_KEYS
-        } else if (tokenType == RoutesTypes.COMMENT) {
-            COMMENT_KEYS
-        } else if (tokenType == TokenType.BAD_CHARACTER) {
-            BAD_CHAR_KEYS
-        } else {
-            EMPTY_KEYS
+        return when (tokenType) {
+            RoutesTypes.VERB -> VERB_KEYS
+            RoutesTypes.SLASH -> SLASH_KEYS
+            RoutesTypes.STATIC_PATH_SEGMENT -> STATIC_PATH_SEGMENT_KEYS
+            RoutesTypes.PATH_PARAMETER -> PATH_PARAMETER_KEYS
+            RoutesTypes.ARGUMENT -> ARGUMENT_KEYS
+            RoutesTypes.COMMENT -> COMMENT_KEYS
+            TokenType.BAD_CHARACTER -> BAD_CHAR_KEYS
+            else -> EMPTY_KEYS
         }
     }
 

@@ -21,6 +21,8 @@ class RoutesColorSettingsPage : ColorSettingsPage {
         return """
             # Gets a single user with the given ID.
             GET    /user/:userId    UserController.get(userId: String)
+
+            bad character
         """.trimIndent()
     }
 
@@ -37,7 +39,7 @@ class RoutesColorSettingsPage : ColorSettingsPage {
     }
 
     override fun getDisplayName(): String {
-        return "Routes"
+        return "Play 2 Routes"
     }
 
     companion object {
@@ -46,7 +48,9 @@ class RoutesColorSettingsPage : ColorSettingsPage {
                 AttributesDescriptor("Path Parameter", RoutesSyntaxHighlighter.PATH_PARAMETER),
                 AttributesDescriptor("Static Path Segment", RoutesSyntaxHighlighter.STATIC_PATH_SEGMENT),
                 AttributesDescriptor("Path Separator", RoutesSyntaxHighlighter.SLASH),
-                AttributesDescriptor("Controller Call Parameter", RoutesSyntaxHighlighter.ARGUMENT)
+                AttributesDescriptor("Controller Call Parameter", RoutesSyntaxHighlighter.ARGUMENT),
+                AttributesDescriptor("Comment", RoutesSyntaxHighlighter.COMMENT),
+                AttributesDescriptor("Bad Character", RoutesSyntaxHighlighter.BAD_CHARACTER)
         )
     }
 }
