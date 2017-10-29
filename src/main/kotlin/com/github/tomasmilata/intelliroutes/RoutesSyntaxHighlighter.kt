@@ -22,6 +22,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
             RoutesTypes.SLASH -> SLASH_KEYS
             RoutesTypes.STATIC_PATH_SEGMENT -> STATIC_PATH_SEGMENT_KEYS
             RoutesTypes.PATH_PARAMETER -> PATH_PARAMETER_KEYS
+            RoutesTypes.WILDCARD_PARAMETER -> WILDCARD_PARAMETER_KEYS
             RoutesTypes.ARGUMENT -> ARGUMENT_KEYS
             RoutesTypes.COMMENT -> COMMENT_KEYS
             TokenType.BAD_CHARACTER -> BAD_CHAR_KEYS
@@ -34,6 +35,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         val SLASH = createTextAttributesKey("PLAY_ROUTES_SLASH", DefaultLanguageHighlighterColors.SEMICOLON)
         val STATIC_PATH_SEGMENT = createTextAttributesKey("PLAY_ROUTES_STATIC_PATH_SEGMENT", DefaultLanguageHighlighterColors.STRING)
         val PATH_PARAMETER = createTextAttributesKey("PLAY_ROUTES_PATH_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
+        val WILDCARD_PARAMETER = createTextAttributesKey("PLAY_ROUTES_WILDCARD_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val ARGUMENT = createTextAttributesKey("PLAY_ROUTES_ARGUMENT", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val COMMENT = createTextAttributesKey("PLAY_ROUTES_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
         val BAD_CHARACTER = createTextAttributesKey("PLAY_ROUTES_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
@@ -43,6 +45,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         private val SLASH_KEYS = arrayOf(SLASH)
         private val STATIC_PATH_SEGMENT_KEYS = arrayOf(STATIC_PATH_SEGMENT)
         private val PATH_PARAMETER_KEYS = arrayOf(PATH_PARAMETER)
+        private val WILDCARD_PARAMETER_KEYS = arrayOf(WILDCARD_PARAMETER)
         private val ARGUMENT_KEYS = arrayOf(ARGUMENT)
         private val COMMENT_KEYS = arrayOf(COMMENT)
         private val EMPTY_KEYS = emptyArray<TextAttributesKey>()

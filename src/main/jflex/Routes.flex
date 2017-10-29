@@ -22,8 +22,9 @@ WHITE_SPACE=\s+
 COMMENT="#"[^\r\n]*
 VERB=[A-Z]+
 PATH=[^\ \r\n]+
-STATIC_PATH_SEGMENT=[^\s\r\n\/:]+
-PATH_PARAMETER=:[^\s\r\n\/:]+
+STATIC_PATH_SEGMENT=[^\s\r\n\/:*]+
+PATH_PARAMETER=:[^\s\r\n\/]+
+WILDCARD_PARAMETER=\*[^\s\r\n\/]+
 CONTROLLER_METHOD=[^\s\r\n()][^\r\n()]*
 ARGUMENT=[^\s\r\n,()][^\r\n,()]*
 
@@ -50,6 +51,7 @@ ARGUMENT=[^\s\r\n,()][^\r\n,()]*
   \/    { return SLASH; }
   {STATIC_PATH_SEGMENT} { return STATIC_PATH_SEGMENT;}
   {PATH_PARAMETER} { return PATH_PARAMETER;}
+  {WILDCARD_PARAMETER} { return WILDCARD_PARAMETER;}
   {WHITE_SPACE}       { yybegin(WAITING_CONTROLLER_METHOD); return WHITE_SPACE; }
 }
 
