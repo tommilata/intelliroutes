@@ -42,7 +42,6 @@ ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 %%
 
 <YYINITIAL> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   {COMMENT}           { return COMMENT; }
   {VERB}              { yybegin(WAITING_PATH); return VERB; }
 }
@@ -60,18 +59,15 @@ ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 }
 
 <WAITING_CONTROLLER_METHOD> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   {CONTROLLER_METHOD} { yybegin(WAITING_ARGUMENTS); return CONTROLLER_METHOD; }
 }
 
 <WAITING_ARGUMENTS> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   \(                 { yybegin(WAITING_ARGUMENT_NAME); return OPENING_PARENTHESIS; }
   .                  { yybegin(YYINITIAL); }
 }
 
 <WAITING_ARGUMENT_NAME> {
-  {WHITE_SPACE}      { return WHITE_SPACE; }
   {ARGUMENT_NAME}         { return ARGUMENT_NAME; }
   ,                  { return COMMA; }
   :                 { yybegin(WAITING_ARGUMENT_TYPE); return COLON; }
@@ -80,14 +76,13 @@ ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 }
 
 <WAITING_ARGUMENT_TYPE> {
-    {WHITE_SPACE}      { return WHITE_SPACE; }
     {ARGUMENT_TYPE}         { yybegin(WAITING_ARGUMENT_NAME); return ARGUMENT_TYPE; }
 }
 
 <WAITING_ARGUMENT_VALUE> {
-    {WHITE_SPACE}      { return WHITE_SPACE; }
     {ARGUMENT_VALUE}         { yybegin(WAITING_ARGUMENT_NAME); return ARGUMENT_VALUE; }
 }
 
+{WHITE_SPACE}      { return WHITE_SPACE; }
 {EOL}               { return EOL; }
 .                    { return BAD_CHARACTER; }
