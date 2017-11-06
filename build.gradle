@@ -22,7 +22,7 @@ repositories {
 }
 
 group 'com.github.tomas-milata'
-version '1.1'
+version '1.2'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
