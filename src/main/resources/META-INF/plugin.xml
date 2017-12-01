@@ -1,7 +1,6 @@
 <idea-plugin>
   <id>com.github.tomasmilata.intelliroutes</id>
   <name>Play Routes</name>
-  <version>1.0</version>
   <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
 
   <description><![CDATA[
