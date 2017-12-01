@@ -39,7 +39,11 @@ sourceSets {
 }
 
 intellij {
-    version '2017.2.4'
+    version '2017.3'
+}
+
+patchPluginXml {
+    sinceBuild '173'
 }
 
 task generateParser(type: GenerateParser) {
