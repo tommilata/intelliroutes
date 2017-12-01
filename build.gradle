@@ -40,9 +40,6 @@ sourceSets {
 
 intellij {
     version '2017.2.4'
-    publish {
-        pluginId '10053-play-routes'
-    }
 }
 
 task generateParser(type: GenerateParser) {
