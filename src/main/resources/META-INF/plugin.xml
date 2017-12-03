@@ -21,6 +21,8 @@
   <!-- uncomment to enable plugin in all products
   <depends>com.intellij.modules.lang</depends>
   -->
+  <depends>org.intellij.scala</depends>
+
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.github.tomasmilata.intelliroutes.RoutesFileTypeFactory"/>

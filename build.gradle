@@ -40,6 +40,7 @@ sourceSets {
 
 intellij {
     version '2017.3'
+    plugins 'org.intellij.scala:2017.3.9'
 }
 
 patchPluginXml {
