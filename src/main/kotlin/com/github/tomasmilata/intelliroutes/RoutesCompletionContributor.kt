@@ -9,9 +9,11 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.patterns.PlatformPatterns
 import com.intellij.psi.*
+import com.intellij.psi.scope.util.PsiScopesUtil
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.ProjectScope
-import com.intellij.psi.util.InheritanceUtil.isInheritor
+import com.intellij.psi.util.InheritanceUtil.isInheritorOrSelf
+import com.intellij.psi.util.PsiClassUtil
 import com.intellij.psi.util.PsiTypesUtil
 import com.intellij.util.ProcessingContext
 import com.intellij.util.indexing.FileBasedIndex
@@ -83,10 +85,15 @@ class RoutesCompletionContributor : CompletionContributor() {
                             .filter { it.isPhysical }
                             .filterNot { it.isInterface }
 
+            val project = parameters.originalFile.project
+            val projectWithLibrariesScope = ProjectScope.getAllScope(project)
+            val psiFacade = JavaPsiFacade.getInstance(project)
+            val playAction = psiFacade.findClass("play.api.mvc.Action", projectWithLibrariesScope)
+
             classes.forEach { cls ->
                 cls.allMethods.forEach { method ->
                     val returnType = PsiTypesUtil.getPsiClass(method.returnType)
-                    if (isInheritor(returnType, "play.api.mvc.Action")) {
+                    if (isInheritorOrSelf(returnType, playAction, true)) {
                         val name = "${cls.qualifiedName}.${method.name}"
                         val lookupElement = LookupElementBuilder.create(name)
                         resultSet.addElement(lookupElement)
