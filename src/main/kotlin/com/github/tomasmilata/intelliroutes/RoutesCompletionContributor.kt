@@ -6,10 +6,8 @@ import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.ide.highlighter.JavaFileType
 import com.intellij.openapi.project.Project
 import com.intellij.patterns.PlatformPatterns
-import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiJavaFile
 import com.intellij.psi.PsiManager
-import com.intellij.psi.PsiMethod
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.util.InheritanceUtil.isInheritor
@@ -74,7 +72,7 @@ class RoutesCompletionContributor : CompletionContributor() {
                             cls.allMethods.forEach { method ->
                                 val returnType = PsiTypesUtil.getPsiClass(method.returnType)
                                 if (isInheritor(returnType, "play.api.mvc.Action")) {
-                                    val name = fullyQualifiedName(cls, method)
+                                    val name = "${cls.qualifiedName}.${method.name}"
                                     val lookupElement = LookupElementBuilder.create(name)
                                     resultSet.addElement(lookupElement)
                                 }
@@ -82,8 +80,6 @@ class RoutesCompletionContributor : CompletionContributor() {
                         }
                     }
                 }
-
-        private fun fullyQualifiedName(cls: PsiClass, method: PsiMethod) = "${cls.qualifiedName}.${method.name}"
 
         private fun javaFiles(project: Project): List<PsiJavaFile> {
 
