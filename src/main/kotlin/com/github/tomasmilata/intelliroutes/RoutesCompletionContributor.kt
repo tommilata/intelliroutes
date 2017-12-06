@@ -4,10 +4,11 @@ import com.github.tomasmilata.intelliroutes.psi.RoutesTypes
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.ide.highlighter.JavaFileType
+import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.patterns.PlatformPatterns
-import com.intellij.psi.PsiJavaFile
-import com.intellij.psi.PsiManager
+import com.intellij.psi.*
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.util.InheritanceUtil.isInheritor
@@ -26,7 +27,11 @@ class RoutesCompletionContributor : CompletionContributor() {
         )
         extend(CompletionType.BASIC,
                 PlatformPatterns.psiElement(RoutesTypes.CONTROLLER_METHOD).withLanguage(RoutesLanguage.INSTANCE),
-                controllerMethodCompletionProvider
+                javaControllerMethodCompletionProvider
+        )
+        extend(CompletionType.BASIC,
+                PlatformPatterns.psiElement(RoutesTypes.CONTROLLER_METHOD).withLanguage(RoutesLanguage.INSTANCE),
+                scalaControllerMethodCompletionProvider
         )
     }
 
@@ -45,68 +50,73 @@ class RoutesCompletionContributor : CompletionContributor() {
                     }
                 }
 
-        private val controllerMethodCompletionProvider =
+        private val javaControllerMethodCompletionProvider =
                 object : CompletionProvider<CompletionParameters>() {
                     override fun addCompletions(parameters: CompletionParameters,
                                                 context: ProcessingContext,
                                                 resultSet: CompletionResultSet) {
                         val project = parameters.originalFile.project
-                        val text = parameters.position.text.removeSuffix("IntellijIdeaRulezzz ")
-
-                        val javaClasses = javaFiles(project).flatMap { javaFile ->
-                            javaFile.classes.toList()
-                                    .filter { it.qualifiedName?.startsWith(text) ?: false }
-                        }
-
-                        val scalaFiles = scalaFiles(project)
-                        val scalaClasses = scalaFiles.flatMap { scalaFile ->
-                            val r = scalaFile.classes.toList()
-                            r.filter { it.qualifiedName?.startsWith(text) ?: false }
-                        }
-                                .filter { it.isPhysical }
-                                .filterNot { it.isInterface }
-
-                        val allClasses = javaClasses.plus(scalaClasses)
-
-                        allClasses.forEach { cls ->
-                            cls.allMethods.forEach { method ->
-                                val returnType = PsiTypesUtil.getPsiClass(method.returnType)
-                                if (isInheritor(returnType, "play.api.mvc.Action")) {
-                                    val name = "${cls.qualifiedName}.${method.name}"
-                                    val lookupElement = LookupElementBuilder.create(name)
-                                    resultSet.addElement(lookupElement)
-                                }
-                            }
-                        }
+                        addCompletions(parameters, resultSet, javaFiles(project))
                     }
                 }
 
+
+        private val scalaControllerMethodCompletionProvider =
+                object : CompletionProvider<CompletionParameters>() {
+                    override fun addCompletions(parameters: CompletionParameters,
+                                                context: ProcessingContext,
+                                                resultSet: CompletionResultSet) {
+                        val project = parameters.originalFile.project
+                        addCompletions(parameters, resultSet, scalaFiles(project))
+                    }
+                }
+
+        private fun addCompletions(parameters: CompletionParameters,
+                                   resultSet: CompletionResultSet,
+                                   files: List<PsiClassOwner>
+        ) {
+            val enteredText = parameters.position.text.removeSuffix("IntellijIdeaRulezzz ") // WTF?
+
+            val classes =
+                    files.flatMap { it.classes.toList() }
+                            .filter { it.qualifiedName?.startsWith(enteredText) ?: false }
+                            .filter { it.isPhysical }
+                            .filterNot { it.isInterface }
+
+            classes.forEach { cls ->
+                cls.allMethods.forEach { method ->
+                    val returnType = PsiTypesUtil.getPsiClass(method.returnType)
+                    if (isInheritor(returnType, "play.api.mvc.Action")) {
+                        val name = "${cls.qualifiedName}.${method.name}"
+                        val lookupElement = LookupElementBuilder.create(name)
+                        resultSet.addElement(lookupElement)
+                    }
+                }
+            }
+        }
+
         private fun javaFiles(project: Project): List<PsiJavaFile> {
-
-            val index = FileBasedIndex.getInstance()
-            val searchScope = ProjectScope.getContentScope(project)
-
-            val virtualFiles = index.getContainingFiles(
-                    FileTypeIndex.NAME, JavaFileType.INSTANCE, searchScope)
-
             val psiManager = PsiManager.getInstance(project)
-            return virtualFiles.mapNotNull { virtualFile ->
-                psiManager.findFile(virtualFile) as PsiJavaFile?
+            val virtualFiles = virtualFiles(project, JavaFileType.INSTANCE)
+            return virtualFiles.mapNotNull {
+                psiManager.findFile(it) as PsiJavaFile?
             }
         }
 
         private fun scalaFiles(project: Project): List<ScalaFile> {
+            val psiManager = PsiManager.getInstance(project)
+            val virtualFiles = virtualFiles(project, ScalaFileType.INSTANCE)
+            return virtualFiles.mapNotNull {
+                psiManager.findFile(it) as ScalaFile?
+            }
+        }
 
+        private fun virtualFiles(project: Project, fileType: LanguageFileType): Collection<VirtualFile> {
             val index = FileBasedIndex.getInstance()
             val searchScope = ProjectScope.getContentScope(project)
 
-            val virtualFiles = index.getContainingFiles(
-                    FileTypeIndex.NAME, ScalaFileType.INSTANCE, searchScope)
-
-            val psiManager = PsiManager.getInstance(project)
-            return virtualFiles.mapNotNull { virtualFile ->
-                psiManager.findFile(virtualFile) as ScalaFile?
-            }
+            return index.getContainingFiles(
+                    FileTypeIndex.NAME, fileType, searchScope)
         }
 
     }
