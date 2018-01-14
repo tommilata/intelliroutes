@@ -22,6 +22,10 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    testCompile "io.kotlintest:kotlintest:2.0.7"
+}
+
 group 'com.github.tomas-milata'
 version gitVersion() // uses git describe
 
@@ -33,7 +37,7 @@ def genRoot = file('src/generated')
 
 sourceSets {
     main {
-        java.srcDirs 'src', genRoot
+        java.srcDirs 'src/main', genRoot
         resources.srcDir 'resources'
     }
 }
