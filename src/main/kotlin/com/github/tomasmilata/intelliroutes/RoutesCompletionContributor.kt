@@ -82,7 +82,7 @@ class RoutesCompletionContributor : CompletionContributor() {
 
             val classes = files
                     .flatMap { it.classes.toList() }
-                    .filter { it.qualifiedName?.let { filterByClassPrefix(it, enteredText) } ?: false }
+                    .filter { filterByClassPrefix(it, enteredText) }
                     .filter { it.isPhysical }
                     .filterNot { it.isInterface }
 

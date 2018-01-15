@@ -1,10 +1,13 @@
 package com.github.tomasmilata.intelliroutes
 
+import com.intellij.psi.PsiClass
+
 object ControllerFilter {
 
-    fun filterByClassPrefix(classSuggestion: String, entered: String): Boolean {
+    fun filterByClassPrefix(classSuggestion: PsiClass, entered: String): Boolean {
+        val className = classSuggestion.qualifiedName ?: return false
         val enteredSegments = entered.trimEnd('.').split('.')
-        val suggestionPackageAndClassSegments = classSuggestion.split('.')
+        val suggestionPackageAndClassSegments = className.split('.')
 
         val prefixLength = minOf(
                 suggestionPackageAndClassSegments.size,

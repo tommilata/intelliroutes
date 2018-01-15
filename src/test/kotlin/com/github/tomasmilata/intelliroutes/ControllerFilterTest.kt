@@ -1,15 +1,24 @@
 package com.github.tomasmilata.intelliroutes
 
 import com.github.tomasmilata.intelliroutes.ControllerFilter.filterByClassPrefix
+import com.intellij.psi.PsiClass
 import io.kotlintest.matchers.shouldEqual
+import io.kotlintest.mock.mock
+import io.kotlintest.mock.`when`
 import io.kotlintest.properties.*
 import io.kotlintest.specs.StringSpec
 
 
 class ControllerFilterTest : StringSpec() {
 
+    private fun controllerClassMock(): PsiClass {
+        val controllerClassMock = mock<PsiClass>()
+        `when`(controllerClassMock.qualifiedName).thenReturn("foo.bar.Controller")
+        return controllerClassMock
+    }
+
     init {
-        "filter return true for matching prefixes" {
+        "filter should return true for matching prefixes" {
             val prefixes = table(
                     headers("prefix"),
                     row("foo"),
@@ -22,12 +31,12 @@ class ControllerFilterTest : StringSpec() {
                     row("foo.bar.Controller."),
                     row("foo.bar.Controller.method")
             )
-            forAll(prefixes) { prefix ->
-                filterByClassPrefix("foo.bar.Controller", prefix) shouldEqual true
+            forAll(prefixes) {
+                filterByClassPrefix(controllerClassMock(), it) shouldEqual true
             }
         }
 
-        "filter return false for non-matching prefixes" {
+        "filter should  return false for non-matching prefixes" {
             val prefixes = table(
                     headers("prefix"),
                     row("xf"),
@@ -36,9 +45,15 @@ class ControllerFilterTest : StringSpec() {
                     row("foo.bar.X"),
                     row("foo.bar.ControllerX")
             )
-            forAll(prefixes) { prefix ->
-                filterByClassPrefix("foo.bar.Controller", prefix) shouldEqual false
+            forAll(prefixes) {
+                filterByClassPrefix(controllerClassMock(), it) shouldEqual false
             }
+        }
+
+        "filter should return false if qualifiedName returns null" {
+            val controllerClassMock = mock<PsiClass>()
+            `when`(controllerClassMock.qualifiedName).thenReturn(null)
+            filterByClassPrefix(controllerClassMock, "not used") shouldEqual false
         }
     }
 }
