@@ -42,9 +42,8 @@ class RoutesCompletionContributor : CompletionContributor() {
     companion object {
         private val httpVerbs =
                 listOf("GET", "POST", "PUT", "PATCH", "HEAD", "DELETE", "OPTIONS")
-                        .map { verb ->
-                            LookupElementBuilder.create(verb)
-                        }
+                        .map { LookupElementBuilder.create(it) }
+
         private val httpVerbCompletionProvider =
                 object : CompletionProvider<CompletionParameters>() {
                     override fun addCompletions(parameters: CompletionParameters,
