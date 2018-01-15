@@ -1,5 +1,6 @@
 package com.github.tomasmilata.intelliroutes
 
+import com.github.tomasmilata.intelliroutes.ControllerFilter.filterByClassPrefix
 import com.github.tomasmilata.intelliroutes.psi.RoutesTypes
 import com.intellij.codeInsight.completion.*
 import com.intellij.codeInsight.lookup.LookupElementBuilder
@@ -8,12 +9,13 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.patterns.PlatformPatterns
-import com.intellij.psi.*
-import com.intellij.psi.scope.util.PsiScopesUtil
+import com.intellij.psi.JavaPsiFacade
+import com.intellij.psi.PsiClassOwner
+import com.intellij.psi.PsiJavaFile
+import com.intellij.psi.PsiManager
 import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.util.InheritanceUtil.isInheritorOrSelf
-import com.intellij.psi.util.PsiClassUtil
 import com.intellij.psi.util.PsiTypesUtil
 import com.intellij.util.ProcessingContext
 import com.intellij.util.indexing.FileBasedIndex
@@ -75,15 +77,14 @@ class RoutesCompletionContributor : CompletionContributor() {
 
         private fun addCompletions(parameters: CompletionParameters,
                                    resultSet: CompletionResultSet,
-                                   files: List<PsiClassOwner>
-        ) {
+                                   files: List<PsiClassOwner>) {
             val enteredText = parameters.position.text.removeSuffix("IntellijIdeaRulezzz ") // WTF?
 
-            val classes =
-                    files.flatMap { it.classes.toList() }
-                            .filter { it.qualifiedName?.startsWith(enteredText) ?: false }
-                            .filter { it.isPhysical }
-                            .filterNot { it.isInterface }
+            val classes = files
+                    .flatMap { it.classes.toList() }
+                    .filter { it.qualifiedName?.let { filterByClassPrefix(it, enteredText) } ?: false }
+                    .filter { it.isPhysical }
+                    .filterNot { it.isInterface }
 
             val project = parameters.originalFile.project
             val projectWithLibrariesScope = ProjectScope.getAllScope(project)
