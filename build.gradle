@@ -7,15 +7,15 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath "com.github.hurricup:gradle-grammar-kit-plugin:2017.1.1"
+        classpath 'com.github.hurricup:gradle-grammar-kit-plugin:2017.1.1'
     }
 }
 
 plugins {
     id 'java'
-    id "org.jetbrains.kotlin.jvm" version "1.1.51"
-    id "org.jetbrains.intellij" version "0.2.17"
-    id "com.palantir.git-version" version "0.10.0"
+    id 'org.jetbrains.kotlin.jvm' version '1.1.51'
+    id 'org.jetbrains.intellij' version '0.2.17'
+    id 'com.palantir.git-version' version '0.10.0'
 }
 
 repositories {
@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    testCompile "io.kotlintest:kotlintest:2.0.7"
+    testCompile 'io.kotlintest:kotlintest:2.0.7'
 }
 
 group 'com.github.tomas-milata'
@@ -52,7 +52,7 @@ patchPluginXml {
 }
 
 task generateParser(type: GenerateParser) {
-    source = "src/main/grammar/Routes.bnf"
+    source = 'src/main/grammar/Routes.bnf'
     pathToParser = '/com/github/tomasmilata/intelliroutes/parser/RoutesParser.java'
     pathToPsiRoot = '/com/github/tomasmilata/intelliroutes/psi'
     targetRoot = genRoot
@@ -61,9 +61,9 @@ task generateParser(type: GenerateParser) {
 
 task generateLexer(type: GenerateLexer) {
     dependsOn generateParser
-    source = "src/main/jflex/Routes.flex"
+    source = 'src/main/jflex/Routes.flex'
     targetDir = "${genRoot}/com/github/tomasmilata/intelliroutes"
-    targetClass = "RoutesLexer"
+    targetClass = 'RoutesLexer'
     purgeOldFiles = true
 }
 
