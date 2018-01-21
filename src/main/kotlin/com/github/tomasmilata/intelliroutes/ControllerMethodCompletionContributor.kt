@@ -13,8 +13,6 @@ import com.intellij.psi.search.FileTypeIndex
 import com.intellij.psi.search.ProjectScope
 import com.intellij.psi.util.InheritanceUtil.isInheritorOrSelf
 import com.intellij.psi.util.PsiTypesUtil
-import com.intellij.util.indexing.FileBasedIndex
-
 
 object ControllerMethodCompletionContributor {
 
@@ -24,9 +22,9 @@ object ControllerMethodCompletionContributor {
         val enteredText = parameters.position.text.removeSuffix("IntellijIdeaRulezzz ") // WTF?
 
         val classes = files
+                .filter { it.isValid && it.isPhysical }
                 .flatMap { it.classes.toList() }
                 .filter { filterByClassPrefix(it, enteredText) }
-                .filter { it.isPhysical }
                 .filterNot { it.isInterface }
 
         val project = parameters.originalFile.project
