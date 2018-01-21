@@ -1,4 +1,4 @@
-<idea-plugin>
+<idea-plugin version="2">
   <id>com.github.tomasmilata.intelliroutes</id>
   <name>Play Routes</name>
   <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
@@ -8,8 +8,7 @@
     ]]></description>
 
   <depends>com.intellij.modules.java</depends>
-  <depends>org.intellij.scala</depends>
-
+  <depends optional="true" config-file="plugin-scala.xml">org.intellij.scala</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <fileTypeFactory implementation="com.github.tomasmilata.intelliroutes.RoutesFileTypeFactory"/>
@@ -18,11 +17,6 @@
     <colorSettingsPage implementation="com.github.tomasmilata.intelliroutes.RoutesColorSettingsPage"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.HttpVerbsCompletionContributor"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.JavaRoutesCompletionContributor"/>
-    <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.ScalaRoutesCompletionContributor"/>
   </extensions>
-
-  <actions>
-    <!-- Add your actions here -->
-  </actions>
 
 </idea-plugin>

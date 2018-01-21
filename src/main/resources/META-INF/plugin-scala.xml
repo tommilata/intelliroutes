@@ -1,0 +1,5 @@
+<idea-plugin version="2">
+    <extensions defaultExtensionNs="com.intellij">
+        <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.ScalaRoutesCompletionContributor"/>
+    </extensions>
+</idea-plugin>
