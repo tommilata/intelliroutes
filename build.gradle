@@ -67,6 +67,6 @@ task generateLexer(type: GenerateLexer) {
     purgeOldFiles = true
 }
 
-compileJava {
+compileKotlin {
     dependsOn generateLexer
 }
