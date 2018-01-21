@@ -47,11 +47,8 @@ object ControllerMethodCompletionContributor {
     }
 
     fun virtualFiles(project: Project, fileType: LanguageFileType): Collection<VirtualFile> {
-        val index = FileBasedIndex.getInstance()
         val searchScope = ProjectScope.getContentScope(project)
-
-        return index.getContainingFiles(
-                FileTypeIndex.NAME, fileType, searchScope)
+        return FileTypeIndex.getFiles(fileType, searchScope)
     }
 
 }
