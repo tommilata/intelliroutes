@@ -7,9 +7,6 @@
       Support for <em>routes</em> files in Play framework.
     ]]></description>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="171"/>
-
   <depends>com.intellij.modules.java</depends>
   <depends>org.intellij.scala</depends>
 
