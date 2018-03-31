@@ -13,9 +13,9 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.2.20'
-    id 'org.jetbrains.intellij' version '0.2.17'
-    id 'com.palantir.git-version' version '0.10.0'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.31'
+    id 'org.jetbrains.intellij' version '0.3.1'
+    id 'com.palantir.git-version' version '0.10.1'
 }
 
 repositories {
@@ -43,12 +43,12 @@ sourceSets {
 }
 
 intellij {
-    version '2017.3.3'
-    plugins 'org.intellij.scala:2017.3.9'
+    version '2018.1'
+    plugins 'org.intellij.scala:2018.1.8'
 }
 
 patchPluginXml {
-    sinceBuild '173'
+    sinceBuild '181'
 }
 
 task generateParser(type: GenerateParser) {
