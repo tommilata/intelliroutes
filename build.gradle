@@ -43,12 +43,12 @@ sourceSets {
 }
 
 intellij {
-    version '2018.1'
-    plugins 'org.intellij.scala:2018.1.8'
+    version '2018.2'
+    plugins 'org.intellij.scala:2018.2.9'
 }
 
 patchPluginXml {
-    sinceBuild '181'
+    sinceBuild '182'
 }
 
 task generateParser(type: GenerateParser) {
