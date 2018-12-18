@@ -29,8 +29,8 @@ class RoutesGotoControllerHandler : GotoDeclarationHandler {
         val projectWithLibrariesScope = ProjectScope.getAllScope(project)
         val psiFacade = JavaPsiFacade.getInstance(project)
 
-        val className = sourceElement!!.text.replace("@", "").substringBeforeLast(".")
-        val methodName = sourceElement!!.text.substringAfterLast(".")
+        val className = sourceElement.text.replace("@", "").substringBeforeLast(".")
+        val methodName = sourceElement.text.substringAfterLast(".")
 
         val classes = psiFacade.findClasses(className, projectWithLibrariesScope)
         return classes.flatMap { p -> p.findMethodsByName(methodName, false).map { m -> m.sourceElement!! } }.toTypedArray()
