@@ -1,11 +1,15 @@
 package com.github.tomasmilata.intelliroutes.psi
 
-import com.intellij.psi.tree.IElementType
 import com.github.tomasmilata.intelliroutes.RoutesLanguage
 import com.github.tomasmilata.intelliroutes.psi.RoutesTypes.*
-import org.jetbrains.annotations.*
+import com.intellij.psi.tree.IElementType
+import org.jetbrains.annotations.NonNls
 
 class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, RoutesLanguage.INSTANCE) {
+
+    companion object {
+        const val CONTROLLER_METHOD_STR: String = "controller method"
+    }
 
     override fun toString(): String {
         return when (this) {
@@ -17,7 +21,7 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
             ARGUMENT_TYPE -> "argument type"
             ARGUMENT_VALUE -> "argument value"
             COMMENT -> "comment"
-            CONTROLLER_METHOD -> "controller method"
+            CONTROLLER_METHOD -> CONTROLLER_METHOD_STR
             EOL -> "new line"
             EQ -> "="
             PATH_PARAMETER -> "path parameter"
@@ -27,5 +31,9 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
             WILDCARD_PARAMETER -> "wildcard parameter"
             else -> super.toString()
         }
+    }
+
+    fun isControllerMethod(): Boolean {
+        return this.toString() == CONTROLLER_METHOD_STR
     }
 }
