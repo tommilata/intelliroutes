@@ -12,7 +12,7 @@ import com.intellij.psi.search.ProjectScope
 
 class RoutesGotoControllerHandler : GotoDeclarationHandler {
 
-    override fun getActionText(context: DataContext?): String? {
+    override fun getActionText(context: DataContext): String {
         return "Go to controller reference"
     }
 
