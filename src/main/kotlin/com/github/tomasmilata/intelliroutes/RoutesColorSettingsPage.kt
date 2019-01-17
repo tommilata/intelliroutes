@@ -45,7 +45,9 @@ class RoutesColorSettingsPage : ColorSettingsPage {
     companion object {
         private val DESCRIPTORS = arrayOf(
                 AttributesDescriptor("HTTP Verb", RoutesSyntaxHighlighter.VERB),
+                AttributesDescriptor("Redirect Arrow", RoutesSyntaxHighlighter.ARROW),
                 AttributesDescriptor("Path Parameter", RoutesSyntaxHighlighter.PATH_PARAMETER),
+                AttributesDescriptor("Path Regex Parameter", RoutesSyntaxHighlighter.PATH_REGEX_PARAM),
                 AttributesDescriptor("Wildcard Path Parameter", RoutesSyntaxHighlighter.WILDCARD_PARAMETER),
                 AttributesDescriptor("Static Path Segment", RoutesSyntaxHighlighter.STATIC_PATH_SEGMENT),
                 AttributesDescriptor("Controller Call Argument Name", RoutesSyntaxHighlighter.ARGUMENT_NAME),
