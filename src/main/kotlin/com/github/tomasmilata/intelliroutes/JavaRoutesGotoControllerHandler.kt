@@ -8,10 +8,8 @@ import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.search.ProjectScope
-import org.jetbrains.plugins.scala.finder.ScalaClassFinder
 
-
-class RoutesGotoControllerHandler : GotoDeclarationHandler {
+class JavaRoutesGotoControllerHandler : GotoDeclarationHandler {
 
     override fun getActionText(context: DataContext): String {
         return "Go to controller reference"
@@ -29,14 +27,11 @@ class RoutesGotoControllerHandler : GotoDeclarationHandler {
         val project = editor?.project!!
         val projectWithLibrariesScope = ProjectScope.getAllScope(project)
         val psiFacade = JavaPsiFacade.getInstance(project)
-        val scalaFinder = ScalaClassFinder(project)
 
         val className = sourceElement.text.replace("@", "").substringBeforeLast(".")
         val methodName = sourceElement.text.substringAfterLast(".")
 
-        val javaClasses = psiFacade.findClasses(className, projectWithLibrariesScope)
-        val scalaClasses = scalaFinder.findClasses(className, projectWithLibrariesScope)
-        val classes = javaClasses + scalaClasses
+        val classes = psiFacade.findClasses(className, projectWithLibrariesScope)
         return classes.flatMap { p -> p.findMethodsByName(methodName, false).map { m -> m.sourceElement!! } }.toTypedArray()
     }
 }
