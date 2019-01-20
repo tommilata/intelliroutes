@@ -19,7 +19,7 @@ private item_ ::= (route|redirect|COMMENT|EOL)
 
 route ::= VERB path call
 path ::= SLASH ( pathSegment (SLASH pathSegment)* SLASH?)? WILDCARD_PARAMETER?
-pathSegment ::= STATIC_PATH_SEGMENT | PATH_PARAMETER | PATH_REGEX_PARAM
+pathSegment ::= STATIC_PATH_SEGMENT | PATH_PARAMETER | (PATH_REGEX_PARAM(STATIC_PATH_SEGMENT)?)+
 call ::= CONTROLLER_METHOD ( OPENING_PARENTHESIS arguments? CLOSING_PARENTHESIS)?
 arguments ::= argument (COMMA argument)*
 argument ::= ARGUMENT_NAME (COLON ARGUMENT_TYPE)? (ARGUMENT_EQUAL ARGUMENT_VALUE)?
