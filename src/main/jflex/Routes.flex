@@ -31,7 +31,7 @@ ARGUMENT_NAME=[^\s\r\n,():=][^\r\n,():=]*
 ARGUMENT_TYPE=[^\s\r\n\?,():=][^\r\n\?,():=]*
 ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 ARGUMENT_EQUAL=\??=
-ARROW=\-\>
+ARROW=->
 ROUTE_FILENAME=[\w]+\.[\w]+
 
 %state WAITING_PATH
