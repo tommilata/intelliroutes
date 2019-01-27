@@ -77,6 +77,8 @@ ROUTE_FILENAME=[\w]+\.[\w]+
 
 <WAITING_ROUTE_FILENAME> {
     {ROUTE_FILENAME}      { yybegin(WAITING_EOL); return ROUTE_FILENAME; }
+    {EOL}                 { yybegin(YYINITIAL); return BAD_CHARACTER; }
+    {WHITE_SPACE}         { return WHITE_SPACE; }
 }
 
 <PATH> {
