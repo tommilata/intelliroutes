@@ -24,9 +24,11 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
             RoutesTypes.PATH_PARAMETER -> PATH_PARAMETER_KEYS
             RoutesTypes.PATH_REGEX_PARAM -> PATH_REGEX_PARAM_KEYS
             RoutesTypes.WILDCARD_PARAMETER -> WILDCARD_PARAMETER_KEYS
+            RoutesTypes.CONTROLLER_METHOD -> CONTROLLER_METHOD_KEYS
             RoutesTypes.ARGUMENT_NAME -> ARGUMENT_NAME_KEYS
             RoutesTypes.ARGUMENT_VALUE -> ARGUMENT_VALUE_KEYS
             RoutesTypes.COMMENT -> COMMENT_KEYS
+            RoutesTypes.ROUTE_FILENAME -> ROUTE_FILENAME_KEYS
             TokenType.BAD_CHARACTER -> BAD_CHAR_KEYS
             else -> EMPTY_KEYS
         }
@@ -34,14 +36,16 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
 
     companion object {
         val VERB = createTextAttributesKey("PLAY_ROUTES_VERB", DefaultLanguageHighlighterColors.KEYWORD)
-        val ARROW = createTextAttributesKey("PLAY_ROUTES_ARROW", DefaultLanguageHighlighterColors.KEYWORD)
+        val ARROW = createTextAttributesKey("PLAY_ROUTES_ARROW", DefaultLanguageHighlighterColors.OPERATION_SIGN)
         val STATIC_PATH_SEGMENT = createTextAttributesKey("PLAY_ROUTES_STATIC_PATH_SEGMENT", DefaultLanguageHighlighterColors.STRING)
         val PATH_PARAMETER = createTextAttributesKey("PLAY_ROUTES_PATH_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
-        val PATH_REGEX_PARAM = createTextAttributesKey("PLAY_ROUTES_PATH_REGEX_PARAM", DefaultLanguageHighlighterColors.STATIC_FIELD)
+        val PATH_REGEX_PARAM = createTextAttributesKey("PLAY_ROUTES_PATH_REGEX_PARAM", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR)
         val WILDCARD_PARAMETER = createTextAttributesKey("PLAY_ROUTES_WILDCARD_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
+        val CONTROLLER_METHOD = createTextAttributesKey("PLAY_ROUTES_CONTROLLER_METHOD", DefaultLanguageHighlighterColors.FUNCTION_CALL)
         val ARGUMENT_NAME = createTextAttributesKey("PLAY_ROUTES_ARGUMENT_NAME", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val ARGUMENT_VALUE = createTextAttributesKey("PLAY_ROUTES_ARGUMENT_VALUE", DefaultLanguageHighlighterColors.STRING)
         val COMMENT = createTextAttributesKey("PLAY_ROUTES_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
+        val ROUTE_FILENAME = createTextAttributesKey("PLAY_ROUTES_ROUTE_FILENAME", DefaultLanguageHighlighterColors.CLASS_REFERENCE)
         val BAD_CHARACTER = createTextAttributesKey("PLAY_ROUTES_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 
         private val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
@@ -51,9 +55,11 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         private val PATH_PARAMETER_KEYS = arrayOf(PATH_PARAMETER)
         private val PATH_REGEX_PARAM_KEYS = arrayOf(PATH_REGEX_PARAM)
         private val WILDCARD_PARAMETER_KEYS = arrayOf(WILDCARD_PARAMETER)
+        private val CONTROLLER_METHOD_KEYS = arrayOf(CONTROLLER_METHOD)
         private val ARGUMENT_NAME_KEYS = arrayOf(ARGUMENT_NAME)
         private val ARGUMENT_VALUE_KEYS = arrayOf(ARGUMENT_VALUE)
         private val COMMENT_KEYS = arrayOf(COMMENT)
+        private val ROUTE_FILENAME_KEYS = arrayOf(ROUTE_FILENAME)
         private val EMPTY_KEYS = emptyArray<TextAttributesKey>()
     }
 }

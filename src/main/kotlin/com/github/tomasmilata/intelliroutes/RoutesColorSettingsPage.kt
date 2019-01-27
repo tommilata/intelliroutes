@@ -20,7 +20,12 @@ class RoutesColorSettingsPage : ColorSettingsPage {
     override fun getDemoText(): String {
         return """
             # Gets a single user with the given ID.
-            GET    /user/:userId    UserController.get(userId: String)
+            GET    /user/${'$'}id<[0-9]+>     controllers.UserController.get(id: Int)
+            GET    /user/:username       controllers.UserController.get(username: String)
+
+            POST   /*path                controllers.UploadController.upload(path: String)
+
+            ->     /other                other.OtherRouter
 
             bad character
         """.trimIndent()
@@ -50,8 +55,10 @@ class RoutesColorSettingsPage : ColorSettingsPage {
                 AttributesDescriptor("Path Regex Parameter", RoutesSyntaxHighlighter.PATH_REGEX_PARAM),
                 AttributesDescriptor("Wildcard Path Parameter", RoutesSyntaxHighlighter.WILDCARD_PARAMETER),
                 AttributesDescriptor("Static Path Segment", RoutesSyntaxHighlighter.STATIC_PATH_SEGMENT),
+                AttributesDescriptor("Controller Method", RoutesSyntaxHighlighter.CONTROLLER_METHOD),
                 AttributesDescriptor("Controller Call Argument Name", RoutesSyntaxHighlighter.ARGUMENT_NAME),
                 AttributesDescriptor("Controller Call Argument Value", RoutesSyntaxHighlighter.ARGUMENT_VALUE),
+                AttributesDescriptor("Router Reference", RoutesSyntaxHighlighter.ROUTE_FILENAME),
                 AttributesDescriptor("Comment", RoutesSyntaxHighlighter.COMMENT),
                 AttributesDescriptor("Bad Character", RoutesSyntaxHighlighter.BAD_CHARACTER)
         )
