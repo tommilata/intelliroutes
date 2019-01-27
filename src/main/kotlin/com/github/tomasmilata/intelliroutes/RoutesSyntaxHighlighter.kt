@@ -49,7 +49,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         private val ARROW_KEYS = arrayOf(ARROW)
         private val STATIC_PATH_SEGMENT_KEYS = arrayOf(STATIC_PATH_SEGMENT)
         private val PATH_PARAMETER_KEYS = arrayOf(PATH_PARAMETER)
-        private val PATH_REGEX_PARAM_KEYS = arrayOf(PATH_PARAMETER)
+        private val PATH_REGEX_PARAM_KEYS = arrayOf(PATH_REGEX_PARAM)
         private val WILDCARD_PARAMETER_KEYS = arrayOf(WILDCARD_PARAMETER)
         private val ARGUMENT_NAME_KEYS = arrayOf(ARGUMENT_NAME)
         private val ARGUMENT_VALUE_KEYS = arrayOf(ARGUMENT_VALUE)

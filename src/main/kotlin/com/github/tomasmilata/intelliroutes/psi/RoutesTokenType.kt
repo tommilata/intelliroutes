@@ -27,7 +27,7 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
             EOL -> "new line"
             ARGUMENT_EQUAL -> "="
             PATH_PARAMETER -> "path parameter"
-            PATH_REGEX_PARAM -> "path parameter"
+            PATH_REGEX_PARAM -> "path regex parameter"
             SLASH -> "/"
             STATIC_PATH_SEGMENT -> "static path segment"
             VERB -> "HTTP verb"
