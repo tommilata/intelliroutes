@@ -1,6 +1,6 @@
 <idea-plugin version="2">
     <extensions defaultExtensionNs="com.intellij">
         <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.ScalaRoutesCompletionContributor"/>
-        <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.ScalaRoutesGotoControllerHandler" />
+        <!--<gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.ScalaRoutesGotoControllerHandler" />-->
     </extensions>
 </idea-plugin>
