@@ -43,12 +43,12 @@ sourceSets {
 }
 
 intellij {
-    version '2018.3.3'
-    plugins 'org.intellij.scala:2018.3.5'
+    version 'LATEST-EAP-SNAPSHOT'
+    plugins 'org.intellij.scala:2019.1.1'
 }
 
 patchPluginXml {
-    sinceBuild '183'
+    sinceBuild '191'
 }
 
 task generateParser(type: GenerateParser) {
