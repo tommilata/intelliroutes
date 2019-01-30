@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.github.tomasmilata.intelliroutes</id>
   <name>Play Routes</name>
   <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
