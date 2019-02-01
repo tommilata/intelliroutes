@@ -26,7 +26,7 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: ./gradlew publishPlugin -PpublishPlugin.channels=<< parameters.channel >>
+      - run: ./gradlew publishPlugin -PpublishChannel=<< parameters.channel >>
 
 workflows:
   version: 2
