@@ -39,13 +39,13 @@ workflows:
             - test
           filters:
             branches:
-              only: /^*.-EAP$/
+              only: /*.-EAP/
       - publish:
           channel: "Stable"
           requires:
             - test
           filters:
             branches:
-              only: /^*.-stable$/
+              only: /*.-stable/
             tags:
-              only: /^\d+.\d+.\d+$/
+              only: /\d+.\d+.\d+/
