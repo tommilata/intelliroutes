@@ -21,12 +21,12 @@ jobs:
       channel:
         description: "plugin repository channel to publish to"
         type: enum
-        enum: ["EAP", "Stable"]
+        enum: ["alpha", "Stable"]
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: ./gradlew publishPlugin -PpublishPlugin.channels=<< parameters.channel >>
+      - run: ./gradlew publishPlugin -PpublishChannel=<< parameters.channel >>
 
 workflows:
   version: 2
@@ -34,18 +34,18 @@ workflows:
     jobs:
       - test
       - publish:
-          channel: "EAP"
+          channel: "alpha"
           requires:
             - test
           filters:
             branches:
-              only: /.*-EAP/
+              only: /20\d\d\.\d-master/ # e.g. 2019.1-master
       - publish:
           channel: "Stable"
           requires:
             - test
           filters:
             branches:
-              only: /.*-stable/
+              ignore: /.*/
             tags:
-              only: /\d+.\d+.\d+/
+              only: /20\d\d\.\d/ # e.g. 2019.1.1

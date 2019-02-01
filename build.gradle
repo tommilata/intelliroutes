@@ -53,7 +53,7 @@ patchPluginXml {
 
 publishPlugin {
     token System.getenv('INTELLIJ_PUBLISH_TOKEN')
-    channels 'EAP'
+    channels { publishChannel }
 }
 
 task generateParser(type: GenerateParser) {
