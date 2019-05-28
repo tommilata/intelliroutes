@@ -14,7 +14,7 @@ buildscript {
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.20'
-    id 'org.jetbrains.intellij' version '0.4.2'
+    id 'org.jetbrains.intellij' version '0.4.1'
     id 'com.palantir.git-version' version '0.11.0'
 }
 
@@ -43,12 +43,17 @@ sourceSets {
 }
 
 intellij {
-    version '2018.3.3'
-    plugins 'org.intellij.scala:2018.3.5'
+    version 'LATEST-EAP-SNAPSHOT'
+    plugins 'org.intellij.scala:2019.1.1'
 }
 
 patchPluginXml {
-    sinceBuild '183'
+    sinceBuild '191'
+}
+
+publishPlugin {
+    token System.getenv('INTELLIJ_PUBLISH_TOKEN')
+    channels { publishChannel }
 }
 
 task generateParser(type: GenerateParser) {

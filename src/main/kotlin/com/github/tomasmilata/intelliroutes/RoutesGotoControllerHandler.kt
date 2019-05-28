@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.search.ProjectScope
 
-class JavaRoutesGotoControllerHandler : GotoDeclarationHandler {
+class RoutesGotoControllerHandler : GotoDeclarationHandler {
 
     override fun getActionText(context: DataContext): String {
         return "Go to controller reference"

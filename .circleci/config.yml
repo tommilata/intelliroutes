@@ -1,45 +1,54 @@
-# Java Gradle CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
-version: 2
+version: 2.1
+
 jobs:
-  build:
+  test:
     docker:
-      # specify the version you desire here
       - image: circleci/openjdk:8-jdk
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
-    working_directory: ~/repo
-
-    environment:
-      # Customize the JVM maximum heap limit
-      JVM_OPTS: -Xmx3200m
-      TERM: dumb
-
     steps:
       - checkout
-
-      # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "build.gradle" }}
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
-
-      - run: ./gradlew dependencies
-
+      - run: ./gradlew dependencies test
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
+  publish:
+    parameters:
+      channel:
+        description: "plugin repository channel to publish to"
+        type: enum
+        enum: ["alpha", "Stable"]
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run: ./gradlew publishPlugin -PpublishChannel=<< parameters.channel >>
 
-      # run tests!
-      - run: ./gradlew test
-
-
-
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - test:
+          filters:
+            tags:
+              only: /.*/
+      - publish:
+          channel: "alpha"
+          requires:
+            - test
+          filters:
+            branches:
+              only: /20\d\d\.\d-master/ # e.g. 2019.1-master
+      - publish:
+          channel: "Stable"
+          requires:
+            - test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /20\d\d\.\d\.\d/ # e.g. 2019.1.1

@@ -1,4 +1,4 @@
-<idea-plugin version="2">
+<idea-plugin>
   <id>com.github.tomasmilata.intelliroutes</id>
   <name>Play Routes</name>
   <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
@@ -17,6 +17,6 @@
     <colorSettingsPage implementation="com.github.tomasmilata.intelliroutes.RoutesColorSettingsPage"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.HttpVerbsCompletionContributor"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.JavaRoutesCompletionContributor"/>
-    <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.JavaRoutesGotoControllerHandler" />
+    <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.RoutesGotoControllerHandler" />
   </extensions>
 </idea-plugin>

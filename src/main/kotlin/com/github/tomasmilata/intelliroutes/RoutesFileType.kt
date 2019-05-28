@@ -1,7 +1,6 @@
 package com.github.tomasmilata.intelliroutes
 
 import com.intellij.openapi.fileTypes.LanguageFileType
-import org.jetbrains.annotations.*
 
 import javax.swing.*
 
