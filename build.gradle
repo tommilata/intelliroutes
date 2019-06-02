@@ -44,7 +44,7 @@ sourceSets {
 
 intellij {
     version 'LATEST-EAP-SNAPSHOT'
-    plugins 'org.intellij.scala:2019.1.1'
+    plugins 'org.intellij.scala:2019.2.3'
 }
 
 patchPluginXml {
