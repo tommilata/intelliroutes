@@ -4,14 +4,18 @@ import com.intellij.testFramework.ParsingTestCase
 
 
 class Simple: BaseTestCase() {
-
     fun testSimple() {
         doTest(true)
     }
 }
 
-abstract class BaseTestCase : ParsingTestCase("", "routes", RoutesParserDefinition()) {
+class PathParam: BaseTestCase() {
+    fun testPathParam() {
+        doTest(true)
+    }
+}
 
+abstract class BaseTestCase : ParsingTestCase("", "routes", RoutesParserDefinition()) {
 
     override fun getTestDataPath(): String {
         return "src/test/resources/parser-tests"

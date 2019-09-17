@@ -1,0 +1,1 @@
+GET  /user/:id controllers.UserController.details(id)
