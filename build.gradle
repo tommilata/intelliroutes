@@ -7,7 +7,7 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.github.hurricup:gradle-grammar-kit-plugin:2018.2.2'
+        classpath 'com.github.hurricup:gradle-grammar-kit-plugin:2019.3'
     }
 }
 
@@ -43,11 +43,11 @@ sourceSets {
 }
 
 intellij {
-    version '2019.2.2'
-    plugins = ['java', 'org.intellij.scala:2019.2.7']}
+    version 'LATEST-EAP-SNAPSHOT'
+    plugins = ['java', 'org.intellij.scala:2019.3.9']}
 
 patchPluginXml {
-    sinceBuild '192'
+    sinceBuild '193'
 }
 
 publishPlugin {
