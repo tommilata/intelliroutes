@@ -7,7 +7,7 @@ import javax.swing.*
 class RoutesFileType private constructor() : LanguageFileType(RoutesLanguage.INSTANCE) {
 
     override fun getName(): String {
-        return "Routes file"
+        return "Routes"
     }
 
     override fun getDescription(): String {
