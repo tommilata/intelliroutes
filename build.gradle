@@ -44,6 +44,7 @@ sourceSets {
 
 intellij {
     version '2020.1'
+    updateSinceUntilBuild false
     plugins = ['java', 'org.intellij.scala:2020.1.27']}
 
 patchPluginXml {}
