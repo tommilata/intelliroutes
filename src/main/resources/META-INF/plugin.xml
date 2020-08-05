@@ -11,7 +11,14 @@
   <depends optional="true" config-file="plugin-scala.xml">org.intellij.scala</depends>
 
   <extensions defaultExtensionNs="com.intellij">
-    <fileTypeFactory implementation="com.github.tomasmilata.intelliroutes.RoutesFileTypeFactory"/>
+    <fileType
+            name="Routes"
+            fileNames="routes"
+            extensions="routes"
+            implementationClass="com.github.tomasmilata.intelliroutes.RoutesFileType"
+            fieldName="INSTANCE"
+            language="Routes"
+    />
     <lang.parserDefinition language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.RoutesParserDefinition"/>
     <lang.syntaxHighlighterFactory language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.RoutesSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.github.tomasmilata.intelliroutes.RoutesColorSettingsPage"/>
