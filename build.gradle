@@ -10,10 +10,10 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.3.50'
-    id 'org.jetbrains.intellij' version '0.4.18'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.72'
+    id 'org.jetbrains.intellij' version '0.4.21'
     id 'com.palantir.git-version' version '0.11.0'
-    id 'org.jetbrains.grammarkit' version '2019.3'
+    id 'org.jetbrains.grammarkit' version '2020.2.1'
 }
 
 repositories {
@@ -21,7 +21,7 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-reflect:1.3.50' // explicit depenency to avoid version conflicts
+    compile 'org.jetbrains.kotlin:kotlin-reflect:1.3.72' // explicit dependency to avoid version conflicts
 
     testCompile 'io.kotlintest:kotlintest:2.0.7'
 }
@@ -43,8 +43,9 @@ sourceSets {
 }
 
 intellij {
-    version '2020.1'
-    plugins = ['java', 'org.intellij.scala:2020.1.27']}
+    version '2020.2'
+    plugins = ['java', 'org.intellij.scala:2020.2.17']
+}
 
 patchPluginXml {}
 
