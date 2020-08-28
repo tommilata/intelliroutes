@@ -47,7 +47,9 @@ intellij {
     plugins = ['java', 'org.intellij.scala:2020.2.17']
 }
 
-patchPluginXml {}
+patchPluginXml {
+    untilBuild = '2020.3.*'
+}
 
 publishPlugin {
     token System.getenv('INTELLIJ_PUBLISH_TOKEN')
