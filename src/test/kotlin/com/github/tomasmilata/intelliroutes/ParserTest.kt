@@ -15,6 +15,12 @@ class PathParam: BaseTestCase() {
     }
 }
 
+class SubRouter: BaseTestCase() {
+    fun testSubRouter() {
+        doTest(true)
+    }
+}
+
 abstract class BaseTestCase : ParsingTestCase("", "routes", RoutesParserDefinition()) {
 
     override fun getTestDataPath(): String {
