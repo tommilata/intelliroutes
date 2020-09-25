@@ -20,6 +20,8 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         return when (tokenType) {
             RoutesTypes.VERB -> VERB_KEYS
             RoutesTypes.ARROW -> ARROW_KEYS
+            RoutesTypes.PLUS -> PLUS_KEYS
+            RoutesTypes.MODIFIER -> MODIFIER_KEYS
             RoutesTypes.STATIC_PATH_SEGMENT -> STATIC_PATH_SEGMENT_KEYS
             RoutesTypes.PATH_PARAMETER -> PATH_PARAMETER_KEYS
             RoutesTypes.PATH_REGEX_PARAM -> PATH_REGEX_PARAM_KEYS
@@ -37,6 +39,8 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
     companion object {
         val VERB = createTextAttributesKey("PLAY_ROUTES_VERB", DefaultLanguageHighlighterColors.KEYWORD)
         val ARROW = createTextAttributesKey("PLAY_ROUTES_ARROW", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val PLUS = createTextAttributesKey("PLAY_ROUTES_PLUS", DefaultLanguageHighlighterColors.OPERATION_SIGN)
+        val MODIFIER = createTextAttributesKey("PLAY_ROUTES_MODIFIER", DefaultLanguageHighlighterColors.METADATA)
         val STATIC_PATH_SEGMENT = createTextAttributesKey("PLAY_ROUTES_STATIC_PATH_SEGMENT", DefaultLanguageHighlighterColors.STRING)
         val PATH_PARAMETER = createTextAttributesKey("PLAY_ROUTES_PATH_PARAMETER", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val PATH_REGEX_PARAM = createTextAttributesKey("PLAY_ROUTES_PATH_REGEX_PARAM", DefaultLanguageHighlighterColors.TEMPLATE_LANGUAGE_COLOR)
@@ -51,6 +55,8 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         private val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
         private val VERB_KEYS = arrayOf(VERB)
         private val ARROW_KEYS = arrayOf(ARROW)
+        private val PLUS_KEYS = arrayOf(PLUS)
+        private val MODIFIER_KEYS = arrayOf(MODIFIER)
         private val STATIC_PATH_SEGMENT_KEYS = arrayOf(STATIC_PATH_SEGMENT)
         private val PATH_PARAMETER_KEYS = arrayOf(PATH_PARAMETER)
         private val PATH_REGEX_PARAM_KEYS = arrayOf(PATH_REGEX_PARAM)

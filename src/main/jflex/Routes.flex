@@ -33,9 +33,12 @@ ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 ARGUMENT_EQUAL=\??=
 ARROW=->
 ROUTE_FILENAME=[\w]+\.[\w]+
+PLUS=\+
+MODIFIER=[^#\s]+
 
 %state WAITING_PATH
 %state WAITING_PRE_PATH
+%state WAITING_MODIFIER
 %state PRE_PATH
 %state WAITING_ROUTE_FILENAME
 %state PATH
@@ -45,6 +48,7 @@ ROUTE_FILENAME=[\w]+\.[\w]+
 %state WAITING_ARGUMENT_TYPE
 %state WAITING_ARGUMENT_VALUE
 %state WAITING_EOL
+%state INITIAL_WITH_MODIFIERS
 
 %%
 
@@ -52,8 +56,24 @@ ROUTE_FILENAME=[\w]+\.[\w]+
     {COMMENT}       { return COMMENT; }
     {VERB}          { yybegin(WAITING_PATH); return VERB; }
     {ARROW}         { yybegin(WAITING_PRE_PATH); return ARROW; }
+    {PLUS}          { yybegin(WAITING_MODIFIER); return PLUS; }
     {EOL}           { return EOL; }
     {WHITE_SPACE}   { return WHITE_SPACE; }
+}
+
+<INITIAL_WITH_MODIFIERS> {
+    // same like YYINITIAL, but a VERB is expected
+    // (no subroutes or other MODIFIERS group allowed)
+    {COMMENT}       { return COMMENT; }
+    {VERB}          { yybegin(WAITING_PATH); return VERB; }
+    {EOL}           { return EOL; }
+    {WHITE_SPACE}   { return WHITE_SPACE; }
+}
+
+<WAITING_MODIFIER> {
+    {MODIFIER}      { return MODIFIER; }
+    {WHITE_SPACE}   { return WHITE_SPACE; }
+    {EOL}           { yybegin(INITIAL_WITH_MODIFIERS); return EOL; }
 }
 
 <WAITING_PRE_PATH> {

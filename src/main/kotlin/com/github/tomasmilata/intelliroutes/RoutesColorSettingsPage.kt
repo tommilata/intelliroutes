@@ -24,6 +24,9 @@ class RoutesColorSettingsPage : ColorSettingsPage {
             GET    /user/:username       controllers.UserController.get(username: String)
 
             POST   /*path                controllers.UploadController.upload(path: String)
+            
+            +nocsrf
+            GET    /version              controllers.AppController.version
 
             ->     /other                other.OtherRouter
 
@@ -51,6 +54,8 @@ class RoutesColorSettingsPage : ColorSettingsPage {
         private val DESCRIPTORS = arrayOf(
                 AttributesDescriptor("HTTP Verb", RoutesSyntaxHighlighter.VERB),
                 AttributesDescriptor("Redirect Arrow", RoutesSyntaxHighlighter.ARROW),
+                AttributesDescriptor("Modifiers Plus Symbol", RoutesSyntaxHighlighter.PLUS),
+                AttributesDescriptor("Modifier", RoutesSyntaxHighlighter.MODIFIER),
                 AttributesDescriptor("Path Parameter", RoutesSyntaxHighlighter.PATH_PARAMETER),
                 AttributesDescriptor("Path Regex Parameter", RoutesSyntaxHighlighter.PATH_REGEX_PARAM),
                 AttributesDescriptor("Wildcard Path Parameter", RoutesSyntaxHighlighter.WILDCARD_PARAMETER),

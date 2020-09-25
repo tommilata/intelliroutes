@@ -17,7 +17,8 @@ routesFile ::= item_*
 
 private item_ ::= (route|redirect|COMMENT|EOL)
 
-route ::= VERB path call
+route ::= modifiers? VERB path call
+modifiers ::= PLUS MODIFIER* EOL
 path ::= SLASH ( pathSegment (SLASH pathSegment)* SLASH?)? WILDCARD_PARAMETER?
 pathSegment ::= STATIC_PATH_SEGMENT | PATH_PARAMETER | (PATH_REGEX_PARAM(STATIC_PATH_SEGMENT)?)+
 call ::= CONTROLLER_METHOD ( OPENING_PARENTHESIS arguments? CLOSING_PARENTHESIS)?

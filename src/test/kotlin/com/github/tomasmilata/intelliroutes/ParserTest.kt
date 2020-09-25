@@ -21,6 +21,18 @@ class SubRouter: BaseTestCase() {
     }
 }
 
+class Modifier: BaseTestCase() {
+    fun testModifier() {
+        doTest(true)
+    }
+}
+
+class MultipleModifiers: BaseTestCase() {
+    fun testMultipleModifiers() {
+        doTest(true)
+    }
+}
+
 abstract class BaseTestCase : ParsingTestCase("", "routes", RoutesParserDefinition()) {
 
     override fun getTestDataPath(): String {
