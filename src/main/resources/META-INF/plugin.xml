@@ -4,14 +4,19 @@
   <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
 
   <description><![CDATA[
-      Support for <em>routes</em> files in Play 2 framework. Provides:
+    <p>Support for <em>routes</em> files in Play 2 framework.</p>
+
+    <p>
+      Provides:
       <ul>
         <li>Syntax highlighting</li>
         <li>Code completion</li>
         <li>Navigation between routes files and controller methods</li>
       </ul>
+    </p>
     ]]></description>
 
+  <depends>com.intellij.modules.platform</depends>
   <depends>com.intellij.modules.java</depends>
   <depends optional="true" config-file="plugin-scala.xml">org.intellij.scala</depends>
 
