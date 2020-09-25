@@ -9,7 +9,7 @@
         <li>Syntax highlighting</li>
         <li>Code completion</li>
         <li>Navigation between routes files and controller methods</li>
-      </ul
+      </ul>
     ]]></description>
 
   <depends>com.intellij.modules.java</depends>
