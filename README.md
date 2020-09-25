@@ -15,7 +15,7 @@ _There are multiple Play plugins. Which one should I use?_
 
 <table>
   <tr>
-    <td></td>
+    <th></th>
     <th scope="col">IntelliJ Community</th>
     <th scope="col">IntelliJ Ultimate</th>
     <th scope="col">IntelliJ Edu</th>
