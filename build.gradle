@@ -59,7 +59,7 @@ patchPluginXml {
         """
         <h1>2020.2.4</h1>
         <ul>
-            <li>Added code completion an "go to definition" for other routers</li>
+            <li>Added code completion and "go to definition" for other routers</li>
             <li>Improved controller code completion performance</li>
         </ul>
         """
