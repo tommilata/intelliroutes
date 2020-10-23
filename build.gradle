@@ -44,7 +44,7 @@ sourceSets {
 }
 
 intellij {
-    version '2020.2.1' // IntelliJ Platform IDE version used to build the plugin
+    version '2020.2.3' // IntelliJ Platform IDE version used to build the plugin
     plugins = ['java', 'org.intellij.scala:2020.2.17']
 }
 
