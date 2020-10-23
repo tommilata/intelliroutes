@@ -64,5 +64,6 @@
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.JavaRoutesCompletionContributor"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.OtherRoutersCompletionContributor"/>
     <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.RoutesGotoControllerHandler" />
+    <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.RoutesGotoRouterHandler" />
   </extensions>
 </idea-plugin>

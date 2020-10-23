@@ -9,6 +9,7 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
 
     companion object {
         const val CONTROLLER_METHOD_STR: String = "controller method"
+        const val ROUTER_REFERENCE_STR: String = "router reference"
     }
 
     override fun toString(): String {
@@ -38,5 +39,9 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
 
     fun isControllerMethod(): Boolean {
         return this.toString() == CONTROLLER_METHOD_STR
+    }
+
+    fun isRouterReference(): Boolean {
+        return this.toString() == ROUTER_REFERENCE_STR
     }
 }
