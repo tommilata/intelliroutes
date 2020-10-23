@@ -7,11 +7,6 @@ import org.jetbrains.annotations.NonNls
 
 class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, RoutesLanguage.INSTANCE) {
 
-    companion object {
-        const val CONTROLLER_METHOD_STR: String = "controller method"
-        const val ROUTER_REFERENCE_STR: String = "router reference"
-    }
-
     override fun toString(): String {
         return when (this) {
             COLON -> ":"
@@ -24,24 +19,17 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
             ARGUMENT_TYPE -> "argument type"
             ARGUMENT_VALUE -> "argument value"
             COMMENT -> "comment"
-            CONTROLLER_METHOD -> CONTROLLER_METHOD_STR
+            CONTROLLER_METHOD -> "controller method"
             EOL -> "new line"
             ARGUMENT_EQUAL -> "="
             PATH_PARAMETER -> "path parameter"
             PATH_REGEX_PARAM -> "path regex parameter"
+            ROUTER_REFERENCE -> "router reference"
             SLASH -> "/"
             STATIC_PATH_SEGMENT -> "static path segment"
             VERB -> "HTTP verb"
             WILDCARD_PARAMETER -> "wildcard parameter"
             else -> super.toString()
         }
-    }
-
-    fun isControllerMethod(): Boolean {
-        return this.toString() == CONTROLLER_METHOD_STR
-    }
-
-    fun isRouterReference(): Boolean {
-        return this.toString() == ROUTER_REFERENCE_STR
     }
 }

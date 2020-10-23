@@ -1,6 +1,7 @@
 package com.github.tomasmilata.intelliroutes
 
 import com.github.tomasmilata.intelliroutes.psi.RoutesTokenType
+import com.github.tomasmilata.intelliroutes.psi.RoutesTypes
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.editor.Editor
@@ -16,13 +17,10 @@ class RoutesGotoRouterHandler : GotoDeclarationHandler {
     }
 
     override fun getGotoDeclarationTargets(sourceElement: PsiElement?, offset: Int, editor: Editor?): Array<PsiElement>? {
-        if (sourceElement !is LeafPsiElement || sourceElement.elementType !is RoutesTokenType) {
+        if (sourceElement !is LeafPsiElement || sourceElement.elementType != RoutesTypes.ROUTER_REFERENCE) {
             return PsiElement.EMPTY_ARRAY
         }
 
-        if (!(sourceElement.elementType as RoutesTokenType).isRouterReference()) {
-            return PsiElement.EMPTY_ARRAY
-        }
         val project = editor?.project!!
 
         val targetRoutesFiles: Array<PsiElement> = ProjectFileIndex.routesFiles(project)

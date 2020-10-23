@@ -1,6 +1,7 @@
 package com.github.tomasmilata.intelliroutes
 
 import com.github.tomasmilata.intelliroutes.psi.RoutesTokenType
+import com.github.tomasmilata.intelliroutes.psi.RoutesTypes
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.editor.Editor
@@ -16,11 +17,7 @@ class RoutesGotoControllerHandler : GotoDeclarationHandler {
     }
 
     override fun getGotoDeclarationTargets(sourceElement: PsiElement?, offset: Int, editor: Editor?): Array<PsiElement>? {
-        if (sourceElement !is LeafPsiElement || sourceElement.elementType !is RoutesTokenType) {
-            return PsiElement.EMPTY_ARRAY
-        }
-
-        if (!(sourceElement.elementType as RoutesTokenType).isControllerMethod()) {
+        if (sourceElement !is LeafPsiElement || sourceElement.elementType != RoutesTypes.CONTROLLER_METHOD) {
             return PsiElement.EMPTY_ARRAY
         }
 
