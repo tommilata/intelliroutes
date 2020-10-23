@@ -54,6 +54,16 @@ patchPluginXml {
     /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
      * to give compatibility with a next minor a shot */
     untilBuild = '203.*'
+
+    changeNotes  {
+        """
+        <h1>2020.2.4</h1>
+        <ul>
+            <li>Added code completion an "go to definition" for other routers</li>
+            <li>Improved controller code completion performance</li>
+        </ul>
+        """
+    }
 }
 
 publishPlugin {
