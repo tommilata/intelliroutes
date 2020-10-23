@@ -32,7 +32,7 @@ ARGUMENT_TYPE=[^\s\r\n\?,():=][^\r\n\?,():=]*
 ARGUMENT_VALUE=[^\s\r\n,():=][^\r\n,():=]*
 ARGUMENT_EQUAL=\??=
 ARROW=->
-ROUTE_FILENAME=[\w]+\.[\w]+
+ROUTER_REFERENCE=[\w.]+
 PLUS=\+
 MODIFIER=[^#\s]+
 
@@ -40,7 +40,7 @@ MODIFIER=[^#\s]+
 %state WAITING_PRE_PATH
 %state WAITING_MODIFIER
 %state PRE_PATH
-%state WAITING_ROUTE_FILENAME
+%state WAITING_ROUTER_REFERENCE
 %state PATH
 %state WAITING_CONTROLLER_METHOD
 %state WAITING_ARGUMENTS
@@ -92,11 +92,11 @@ MODIFIER=[^#\s]+
     {PATH_PARAMETER}      { return PATH_PARAMETER;}
     {WILDCARD_PARAMETER}  { return WILDCARD_PARAMETER;}
     {EOL}                 { yybegin(YYINITIAL); return BAD_CHARACTER; }
-    {WHITE_SPACE}         { yybegin(WAITING_ROUTE_FILENAME); return WHITE_SPACE; }
+    {WHITE_SPACE}         { yybegin(WAITING_ROUTER_REFERENCE); return WHITE_SPACE; }
 }
 
-<WAITING_ROUTE_FILENAME> {
-    {ROUTE_FILENAME}      { yybegin(WAITING_EOL); return ROUTE_FILENAME; }
+<WAITING_ROUTER_REFERENCE> {
+    {ROUTER_REFERENCE}    { yybegin(WAITING_EOL); return ROUTER_REFERENCE; }
     {EOL}                 { yybegin(YYINITIAL); return BAD_CHARACTER; }
     {WHITE_SPACE}         { return WHITE_SPACE; }
 }

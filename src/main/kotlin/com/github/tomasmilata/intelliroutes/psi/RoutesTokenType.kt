@@ -18,7 +18,7 @@ class RoutesTokenType(@NonNls debugName: String) : IElementType(debugName, Route
             OPENING_PARENTHESIS -> "("
             CLOSING_PARENTHESIS -> ")"
             ARROW -> "->"
-            ROUTE_FILENAME -> "routes file"
+            ROUTER_REFERENCE -> "router reference"
             ARGUMENT_NAME -> "argument name"
             ARGUMENT_TYPE -> "argument type"
             ARGUMENT_VALUE -> "argument value"

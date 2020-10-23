@@ -30,7 +30,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
             RoutesTypes.ARGUMENT_NAME -> ARGUMENT_NAME_KEYS
             RoutesTypes.ARGUMENT_VALUE -> ARGUMENT_VALUE_KEYS
             RoutesTypes.COMMENT -> COMMENT_KEYS
-            RoutesTypes.ROUTE_FILENAME -> ROUTE_FILENAME_KEYS
+            RoutesTypes.ROUTER_REFERENCE -> ROUTER_REFERENCE_KEYS
             TokenType.BAD_CHARACTER -> BAD_CHAR_KEYS
             else -> EMPTY_KEYS
         }
@@ -49,7 +49,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         val ARGUMENT_NAME = createTextAttributesKey("PLAY_ROUTES_ARGUMENT_NAME", DefaultLanguageHighlighterColors.STATIC_FIELD)
         val ARGUMENT_VALUE = createTextAttributesKey("PLAY_ROUTES_ARGUMENT_VALUE", DefaultLanguageHighlighterColors.STRING)
         val COMMENT = createTextAttributesKey("PLAY_ROUTES_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT)
-        val ROUTE_FILENAME = createTextAttributesKey("PLAY_ROUTES_ROUTE_FILENAME", DefaultLanguageHighlighterColors.CLASS_REFERENCE)
+        val ROUTER_REFERENCE = createTextAttributesKey("PLAY_ROUTES_ROUTER_REFERENCE", DefaultLanguageHighlighterColors.CLASS_REFERENCE)
         val BAD_CHARACTER = createTextAttributesKey("PLAY_ROUTES_BAD_CHARACTER", HighlighterColors.BAD_CHARACTER)
 
         private val BAD_CHAR_KEYS = arrayOf(BAD_CHARACTER)
@@ -65,7 +65,7 @@ class RoutesSyntaxHighlighter : SyntaxHighlighterBase() {
         private val ARGUMENT_NAME_KEYS = arrayOf(ARGUMENT_NAME)
         private val ARGUMENT_VALUE_KEYS = arrayOf(ARGUMENT_VALUE)
         private val COMMENT_KEYS = arrayOf(COMMENT)
-        private val ROUTE_FILENAME_KEYS = arrayOf(ROUTE_FILENAME)
+        private val ROUTER_REFERENCE_KEYS = arrayOf(ROUTER_REFERENCE)
         private val EMPTY_KEYS = emptyArray<TextAttributesKey>()
     }
 }

@@ -12,7 +12,7 @@ import com.intellij.util.ProcessingContext
 
 class OtherRoutersCompletionContributor : CompletionContributor() {
     init {
-        val elementPattern = PlatformPatterns.psiElement(RoutesTypes.ROUTE_FILENAME)
+        val elementPattern = PlatformPatterns.psiElement(RoutesTypes.ROUTER_REFERENCE)
                 .withLanguage(RoutesLanguage.INSTANCE)
         extend(CompletionType.BASIC, elementPattern, otherRoutersCompletionProvider)
     }

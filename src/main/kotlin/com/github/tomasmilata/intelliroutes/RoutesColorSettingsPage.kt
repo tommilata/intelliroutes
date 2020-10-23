@@ -3,7 +3,6 @@ package com.github.tomasmilata.intelliroutes
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.options.colors.*
-import org.jetbrains.annotations.*
 
 import javax.swing.*
 
@@ -63,7 +62,7 @@ class RoutesColorSettingsPage : ColorSettingsPage {
                 AttributesDescriptor("Controller Method", RoutesSyntaxHighlighter.CONTROLLER_METHOD),
                 AttributesDescriptor("Controller Call Argument Name", RoutesSyntaxHighlighter.ARGUMENT_NAME),
                 AttributesDescriptor("Controller Call Argument Value", RoutesSyntaxHighlighter.ARGUMENT_VALUE),
-                AttributesDescriptor("Router Reference", RoutesSyntaxHighlighter.ROUTE_FILENAME),
+                AttributesDescriptor("Router Reference", RoutesSyntaxHighlighter.ROUTER_REFERENCE),
                 AttributesDescriptor("Comment", RoutesSyntaxHighlighter.COMMENT),
                 AttributesDescriptor("Bad Character", RoutesSyntaxHighlighter.BAD_CHARACTER)
         )
