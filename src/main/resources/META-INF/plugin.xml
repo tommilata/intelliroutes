@@ -62,6 +62,7 @@
     <colorSettingsPage implementation="com.github.tomasmilata.intelliroutes.RoutesColorSettingsPage"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.HttpVerbsCompletionContributor"/>
     <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.JavaRoutesCompletionContributor"/>
+    <completion.contributor language="Routes" implementationClass="com.github.tomasmilata.intelliroutes.OtherRoutersCompletionContributor"/>
     <gotoDeclarationHandler implementation="com.github.tomasmilata.intelliroutes.RoutesGotoControllerHandler" />
   </extensions>
 </idea-plugin>

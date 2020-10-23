@@ -10,11 +10,9 @@ import com.intellij.util.ProcessingContext
 class HttpVerbsCompletionContributor : CompletionContributor() {
 
     init {
-        extend(CompletionType.BASIC,
-                PlatformPatterns.psiElement(RoutesTypes.VERB)
-                        .withLanguage(RoutesLanguage.INSTANCE),
-                httpVerbCompletionProvider
-        )
+        val elementPattern = PlatformPatterns.psiElement(RoutesTypes.VERB)
+                .withLanguage(RoutesLanguage.INSTANCE)
+        extend(CompletionType.BASIC, elementPattern, httpVerbCompletionProvider)
     }
 
     companion object {

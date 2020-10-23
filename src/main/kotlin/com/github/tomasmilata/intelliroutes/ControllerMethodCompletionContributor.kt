@@ -70,9 +70,4 @@ object ControllerMethodCompletionContributor {
         return psiFacade.findClass("play.api.mvc.Action", projectWithLibrariesScope)
     }
 
-    fun virtualFiles(project: Project, fileType: LanguageFileType): Collection<VirtualFile> {
-        val searchScope = ProjectScope.getContentScope(project)
-        return FileTypeIndex.getFiles(fileType, searchScope)
-    }
-
 }

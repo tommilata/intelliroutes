@@ -1,7 +1,6 @@
 package com.github.tomasmilata.intelliroutes
 
 import com.github.tomasmilata.intelliroutes.ControllerMethodCompletionContributor.addCompletionsFromFiles
-import com.github.tomasmilata.intelliroutes.ControllerMethodCompletionContributor.virtualFiles
 import com.github.tomasmilata.intelliroutes.psi.RoutesTypes
 import com.intellij.codeInsight.completion.*
 import com.intellij.ide.highlighter.JavaFileType
@@ -14,11 +13,9 @@ import com.intellij.util.ProcessingContext
 
 class JavaRoutesCompletionContributor : CompletionContributor() {
     init {
-        extend(CompletionType.BASIC,
-                PlatformPatterns.psiElement(RoutesTypes.CONTROLLER_METHOD)
-                        .withLanguage(RoutesLanguage.INSTANCE),
-                javaControllerMethodCompletionProvider
-        )
+        val elementPattern = PlatformPatterns.psiElement(RoutesTypes.CONTROLLER_METHOD)
+                .withLanguage(RoutesLanguage.INSTANCE)
+        extend(CompletionType.BASIC, elementPattern, javaControllerMethodCompletionProvider)
     }
 
     companion object {
@@ -35,10 +32,10 @@ class JavaRoutesCompletionContributor : CompletionContributor() {
 
         private fun javaFiles(project: Project): List<PsiJavaFile> {
             val psiManager = PsiManager.getInstance(project)
-            val virtualFiles = virtualFiles(project, JavaFileType.INSTANCE)
-            return virtualFiles.mapNotNull {
-                psiManager.findFile(it) as PsiJavaFile?
-            }
+            return ProjectFileIndex.find(project, JavaFileType.INSTANCE)
+                    .mapNotNull {
+                        psiManager.findFile(it) as PsiJavaFile?
+                    }
         }
 
     }
