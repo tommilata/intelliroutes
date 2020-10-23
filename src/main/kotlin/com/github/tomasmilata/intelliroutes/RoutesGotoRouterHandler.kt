@@ -4,8 +4,10 @@ import com.github.tomasmilata.intelliroutes.psi.RoutesTokenType
 import com.intellij.codeInsight.navigation.actions.GotoDeclarationHandler
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.editor.Editor
+import com.intellij.psi.JavaPsiFacade
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import com.intellij.psi.search.ProjectScope
 
 class RoutesGotoRouterHandler : GotoDeclarationHandler {
 
@@ -21,11 +23,20 @@ class RoutesGotoRouterHandler : GotoDeclarationHandler {
         if (!(sourceElement.elementType as RoutesTokenType).isRouterReference()) {
             return PsiElement.EMPTY_ARRAY
         }
+        val project = editor?.project!!
 
-        return ProjectFileIndex.routesFiles(editor?.project!!)
+        val targetRoutesFiles: Array<PsiElement> = ProjectFileIndex.routesFiles(project)
                 .filter {
                     it.name.replace("\\.routes$".toRegex(), ".Routes") == sourceElement.text
                 }.toTypedArray()
+
+        val projectWithLibrariesScope = ProjectScope.getAllScope(project)
+        val psiFacade = JavaPsiFacade.getInstance(project)
+
+        val className = sourceElement.text
+        val targetRouterClasses = psiFacade.findClasses(className, projectWithLibrariesScope)
+
+        return targetRoutesFiles.plus(targetRouterClasses)
     }
 
 }
