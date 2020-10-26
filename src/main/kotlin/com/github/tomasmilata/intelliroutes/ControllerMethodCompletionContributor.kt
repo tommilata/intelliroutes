@@ -25,14 +25,19 @@ object ControllerMethodCompletionContributor {
 
         val filesToSearch = files.filter { it.isValid && it.isPhysical }
         filesToSearch.forEach { file ->
-            suggest(LookupElementBuilder.create(file.packageName), priority = 0.0)
+            val lookupElement = LookupElementBuilder
+                    .create(file.packageName)
+                    .bold()
+                    .withIcon(file.containingDirectory.getIcon(0))
+            suggest(lookupElement, priority = 0.0)
         }
 
         val classes = filesToSearch.flatMap { it.classes.toList() }
         classes.forEach {
             it.qualifiedName?.let { className ->
                 val lookupElement = LookupElementBuilder
-                        .create(className).bold()
+                        .create(className)
+                        .bold()
                         .withIcon(it.getIcon(0))
                 suggest(lookupElement, priority = 0.0)
             }
@@ -45,7 +50,8 @@ object ControllerMethodCompletionContributor {
                     val returnType = PsiTypesUtil.getPsiClass(method.returnType)
                     val priority = if (isInheritorOrSelf(returnType, playAction, true)) 1.0 else 0.0
                     val lookupElement = LookupElementBuilder
-                            .create(fullMethod).bold()
+                            .create(fullMethod)
+                            .bold()
                             .withIcon(method.getIcon(0))
                     suggest(lookupElement, priority)
                 }
