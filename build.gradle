@@ -61,6 +61,7 @@ patchPluginXml {
         <ul>
             <li>Added code completion and "go to definition" for other routers</li>
             <li>Improved controller code completion performance</li>
+            <li>Added icons next to code completion suggestions</li>
         </ul>
         """
     }
