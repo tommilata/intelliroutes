@@ -10,7 +10,7 @@ buildscript {
 
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.4.31'
+    id 'org.jetbrains.kotlin.jvm' version '1.4.32'
     id 'org.jetbrains.intellij' version '0.7.2'
     id 'com.palantir.git-version' version '0.12.3'
     id 'org.jetbrains.grammarkit' version '2020.3.2'
@@ -42,7 +42,7 @@ sourceSets {
 }
 
 intellij {
-    version 'LATEST-EAP-SNAPSHOT' // IntelliJ Platform IDE version used to build the plugin
+    version '2021.2' // IntelliJ Platform IDE version used to build the plugin
     plugins = ['java', 'org.intellij.scala:2021.1.12']
 }
 
@@ -51,7 +51,7 @@ patchPluginXml {
 
     /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
      * to give compatibility with a next minor a shot */
-    untilBuild = '211.*'
+    untilBuild = '213.*'
 
     changeNotes  {
         """
