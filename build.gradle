@@ -62,6 +62,7 @@ patchPluginXml {
 
 publishPlugin {
     token = System.getenv('INTELLIJ_PUBLISH_TOKEN')
+    channels = [System.getenv('INTELLIJ_PUBLISH_CHANNEL')]
 }
 
 generateParser {

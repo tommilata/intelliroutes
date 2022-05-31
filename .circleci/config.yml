@@ -26,7 +26,7 @@ jobs:
       - image: cimg/openjdk:11.0
     steps:
       - checkout
-      - run: ./gradlew publishPlugin -PpublishChannel=<< parameters.channel >>
+      - run: PUBLISH_CHANNEL=<< parameters.channel >> ./gradlew publishPlugin
 
 workflows:
   version: 2
