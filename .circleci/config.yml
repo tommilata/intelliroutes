@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: circleci/openjdk:11-jdk
+      - image: cimg/openjdk:11.0
     steps:
       - checkout
       - restore_cache:
@@ -23,7 +23,7 @@ jobs:
         type: enum
         enum: ["alpha", "Stable"]
     docker:
-      - image: circleci/openjdk:11-jdk
+      - image: cimg/openjdk:11.0
     steps:
       - checkout
       - run: ./gradlew publishPlugin -PpublishChannel=<< parameters.channel >>
