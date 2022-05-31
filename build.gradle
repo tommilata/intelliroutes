@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url 'http://dl.bintray.com/jetbrains/intellij-plugin-service' }
+        maven { url 'https://dl.bintray.com/jetbrains/intellij-plugin-service' }
         maven { url 'https://jitpack.io' }
     }
 }
@@ -8,7 +8,7 @@ buildscript {
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.6.21'
-    id 'org.jetbrains.intellij' version '1.5.3'
+    id 'org.jetbrains.intellij' version '1.6.0'
     id 'com.palantir.git-version' version '0.15.0'
     id 'org.jetbrains.grammarkit' version '2021.2.2'
 }
@@ -18,10 +18,10 @@ repositories {
 }
 
 dependencies {
-    compile 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.21'
     // explicit dependency to avoid version conflicts
 
-    testCompile 'io.kotlintest:kotlintest:2.0.7'
+    testImplementation 'io.kotlintest:kotlintest:2.0.7'
 }
 
 group 'com.github.tomas-milata'
