@@ -26,13 +26,9 @@ dependencies {
 group 'com.github.tomas-milata'
 version gitVersion() // uses git describe
 
-//apply plugin: 'org.jetbrains.grammarkit'
-
-def genRoot = 'src/generated'
-
 sourceSets {
     main {
-        java.srcDirs 'src/main', genRoot
+        java.srcDirs 'src/main', 'src/generated'
         resources.srcDir 'resources'
     }
 }
@@ -69,14 +65,14 @@ generateParser {
     source = 'src/main/grammar/Routes.bnf'
     pathToParser = '/com/github/tomasmilata/intelliroutes/parser/RoutesParser.java'
     pathToPsiRoot = '/com/github/tomasmilata/intelliroutes/psi'
-    targetRoot = genRoot
+    targetRoot = 'src/generated'
     purgeOldFiles = true
 }
 
 generateLexer {
     dependsOn generateParser
     source = 'src/main/jflex/Routes.flex'
-    targetDir = "${genRoot}/com/github/tomasmilata/intelliroutes"
+    targetDir = 'src/generated/com/github/tomasmilata/intelliroutes'
     targetClass = 'RoutesLexer'
     purgeOldFiles = true
 }
