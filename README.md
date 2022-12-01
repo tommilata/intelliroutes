@@ -2,7 +2,7 @@
 
 # Intelliroutes - IntelliJ plugin for Play 2 `routes` files
 
-[![CircleCI](https://circleci.com/gh/tomas-milata/intelliroutes.svg?style=svg)](https://circleci.com/gh/tomas-milata/intelliroutes)
+[![CircleCI](https://circleci.com/gh/tommilata/intelliroutes.svg?style=svg)](https://circleci.com/gh/tommilata/intelliroutes)
 
 `routes` files are used in [Play 2 framework](https://www.playframework.com/) to define HTTP endpoints.
 
