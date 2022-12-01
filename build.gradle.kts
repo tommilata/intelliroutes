@@ -6,10 +6,10 @@ buildscript {
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.6.21"
-    id("org.jetbrains.intellij") version "1.6.0"
+    id("org.jetbrains.kotlin.jvm") version "1.7.22"
+    id("org.jetbrains.intellij") version "1.10.0"
     id("com.palantir.git-version") version "0.15.0"
-    id("org.jetbrains.grammarkit") version "2021.2.2"
+    id("org.jetbrains.grammarkit") version "2022.3"
 }
 
 repositories {
@@ -17,7 +17,7 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("reflect", version = "1.6.21"))
+    implementation(kotlin("reflect", version = "1.7.22"))
     // explicit dependency to avoid version conflicts
 
     testImplementation("io.kotlintest:kotlintest:2.0.7")
@@ -36,8 +36,8 @@ sourceSets {
 }
 
 intellij {
-    version.set("2022.1") // IntelliJ Platform IDE version used to build the plugin
-    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2022.1.14"))
+    version.set("2022.3") // IntelliJ Platform IDE version used to build the plugin
+    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2022.3.13"))
 }
 
 tasks {
