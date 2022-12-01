@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.github.tomasmilata.intelliroutes</id>
   <name>Play 2 Routes</name>
-  <vendor email="tomas.milata@gmail.com" url="https://github.com/tomas-milata">Tomáš Milata</vendor>
+  <vendor email="tomas.milata@gmail.com" url="https://github.com/tommilata">Tomáš Milata</vendor>
 
   <description><![CDATA[
     <p>Support for <em>routes</em> files in Play 2 framework.</p>
