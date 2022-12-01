@@ -42,7 +42,7 @@ workflows:
             - test
           filters:
             branches:
-              only: /20\d\d\.\d-master/ # e.g. 2019.1-master
+              only: main
       - publish:
           channel: "Stable"
           requires:
