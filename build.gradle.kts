@@ -46,7 +46,7 @@ tasks {
 
         /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
          * to give compatibility with a next minor a shot */
-        untilBuild.set("231.*")
+        untilBuild.set("232.*")
 
         changeNotes.set(
             """
