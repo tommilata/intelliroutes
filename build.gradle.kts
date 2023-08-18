@@ -6,10 +6,10 @@ buildscript {
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.7.22"
-    id("org.jetbrains.intellij") version "1.10.0"
-    id("com.palantir.git-version") version "0.15.0"
-    id("org.jetbrains.grammarkit") version "2022.3"
+    id("org.jetbrains.kotlin.jvm") version "1.9.0"
+    id("org.jetbrains.intellij") version "1.15.0"
+    id("com.palantir.git-version") version "3.0.0"
+    id("org.jetbrains.grammarkit") version "2022.3.1"
 }
 
 repositories {
@@ -66,7 +66,7 @@ tasks {
     }
 
     generateParser {
-        source.set("src/main/grammar/Routes.bnf")
+        sourceFile.set(file("src/main/grammar/Routes.bnf"))
         pathToParser.set("/com/github/tomasmilata/intelliroutes/parser/RoutesParser.java")
         pathToPsiRoot.set("/com/github/tomasmilata/intelliroutes/psi")
         targetRoot.set("src/generated")
@@ -75,7 +75,7 @@ tasks {
 
     generateLexer {
         dependsOn(generateParser)
-        source.set("src/main/jflex/Routes.flex")
+        sourceFile.set(file("src/main/jflex/Routes.flex"))
         targetDir.set("src/generated/com/github/tomasmilata/intelliroutes")
         targetClass.set("RoutesLexer")
         purgeOldFiles.set(true)
