@@ -6,10 +6,10 @@ buildscript {
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.15.0"
+    id("org.jetbrains.kotlin.jvm") version "1.9.21"
+    id("org.jetbrains.intellij") version "1.16.1"
     id("com.palantir.git-version") version "3.0.0"
-    id("org.jetbrains.grammarkit") version "2022.3.1"
+    id("org.jetbrains.grammarkit") version "2022.3.2"
 }
 
 repositories {
@@ -36,8 +36,8 @@ sourceSets {
 }
 
 intellij {
-    version.set("2022.3") // IntelliJ Platform IDE version used to build the plugin
-    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2022.3.13"))
+    version.set("2023.3") // IntelliJ Platform IDE version used to build the plugin
+    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2023.3.17"))
 }
 
 tasks {
@@ -46,7 +46,7 @@ tasks {
 
         /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
          * to give compatibility with a next minor a shot */
-        untilBuild.set("232.*")
+        untilBuild.set("233.*")
 
         changeNotes.set(
             """
