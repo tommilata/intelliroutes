@@ -68,14 +68,12 @@ tasks {
         pathToParser.set("/com/github/tomasmilata/intelliroutes/parser/RoutesParser.java")
         pathToPsiRoot.set("/com/github/tomasmilata/intelliroutes/psi")
         targetRootOutputDir.set(file( "src/generated"))
-        purgeOldFiles.set(true)
     }
 
     generateLexer {
         dependsOn(generateParser)
         sourceFile.set(file("src/main/jflex/Routes.flex"))
         targetOutputDir.set(file("src/generated/com/github/tomasmilata/intelliroutes"))
-        purgeOldFiles.set(true)
     }
 
     compileKotlin {
