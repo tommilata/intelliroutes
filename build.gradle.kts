@@ -19,8 +19,6 @@ repositories {
 dependencies {
     implementation(kotlin("reflect", version = "1.7.22"))
     // explicit dependency to avoid version conflicts
-
-    testImplementation("io.kotlintest:kotlintest:2.0.7")
 }
 
 group = "com.github.tomas-milata"
