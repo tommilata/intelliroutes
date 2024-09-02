@@ -1,3 +1,9 @@
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(19))
+    }
+}
+
 buildscript {
     repositories {
         maven("https://jitpack.io")
@@ -34,8 +40,8 @@ sourceSets {
 }
 
 intellij {
-    version.set("2024.1") // IntelliJ Platform IDE version used to build the plugin
-    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2024.1.15"))
+    version.set("2024.2") // IntelliJ Platform IDE version used to build the plugin
+    plugins.set(listOf("com.intellij.java", "org.intellij.scala:2024.2.25"))
 }
 
 tasks {
@@ -44,7 +50,7 @@ tasks {
 
         /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
          * to give compatibility with a next minor a shot */
-        untilBuild.set("241.*")
+        untilBuild.set("242.*")
 
         changeNotes.set(
             """
