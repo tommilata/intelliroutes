@@ -1,9 +1,3 @@
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(19))
-    }
-}
-
 buildscript {
     repositories {
         maven("https://jitpack.io")
