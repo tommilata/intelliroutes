@@ -1,6 +1,7 @@
 /build/
 /src/generated/
 /.gradle/
+'.intellijPlatform
 
 # IntelliJ project files
 .idea
