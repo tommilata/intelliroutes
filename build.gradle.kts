@@ -8,8 +8,6 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
     id("org.jetbrains.intellij.platform") version "2.0.1"
-    // TODO remove?
-    id("org.jetbrains.intellij.platform.migration") version "2.0.1"
     id("com.palantir.git-version") version "3.0.0"
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
