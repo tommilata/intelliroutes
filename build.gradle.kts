@@ -22,14 +22,14 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        intellijIdeaCommunity("2024.2.1")
+        // We should build agains the lower supported version (`sinceBuild`).
+        // See https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#multipleIDEVersions.
+        intellijIdeaCommunity("2024.2.3")
 
-        plugins(listOf("org.intellij.scala:2024.2.25"))
+        plugins(listOf("org.intellij.scala:2024.2.28"))
         bundledPlugins(listOf("com.intellij.java"))
 
         instrumentationTools()
-
-
     }
     implementation(kotlin("reflect", version = "1.7.22"))
     // explicit dependency to avoid version conflicts
@@ -38,7 +38,7 @@ dependencies {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 group = "com.github.tomas-milata"
@@ -57,9 +57,8 @@ intellijPlatform {
 
     pluginConfiguration {
         ideaVersion {
-            /** should be e.g. 203.* if sinceBuild is 202 (or 2020.2)
-             * to give compatibility with a next minor a shot */
-            untilBuild = "242.*"
+            sinceBuild = "242"
+            // leaving untilBuild unspecified to avoid unnecessary releases
         }
 
         changeNotes = """
