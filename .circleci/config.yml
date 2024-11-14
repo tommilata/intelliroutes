@@ -23,7 +23,7 @@ jobs:
         type: enum
         enum: ["alpha", "Stable"]
     docker:
-      - image: cimg/openjdk:17.0
+      - image: cimg/openjdk:21.0
     steps:
       - checkout
       - run: INTELLIJ_PUBLISH_CHANNEL=<< parameters.channel >> ./gradlew publishPlugin
