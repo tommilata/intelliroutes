@@ -7,7 +7,7 @@ buildscript {
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij.platform") version "2.0.1"
+    id("org.jetbrains.intellij.platform") version "2.1.0"
     id("com.palantir.git-version") version "3.0.0"
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
 }
@@ -22,11 +22,11 @@ repositories {
 
 dependencies {
     intellijPlatform {
-        // We should build agains the lower supported version (`sinceBuild`).
+        // We should build against the lower supported version (`sinceBuild`).
         // See https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html#multipleIDEVersions.
-        intellijIdeaCommunity("2024.2.3")
+        intellijIdeaCommunity("2024.3")
 
-        plugins(listOf("org.intellij.scala:2024.2.28"))
+        plugins(listOf("org.intellij.scala:2024.3.18"))
         bundledPlugins(listOf("com.intellij.java"))
 
         instrumentationTools()
@@ -57,7 +57,7 @@ intellijPlatform {
 
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "242"
+            sinceBuild = "243"
             // leaving untilBuild unspecified to avoid unnecessary releases
         }
 
